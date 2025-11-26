@@ -10,8 +10,27 @@ export default function useTheme() {
     return currentTheme;
   });
 
+  const setDarkTheme = ()=>{
+      let currentTheme = localStorage.getItem("theme");
+      if(currentTheme === "dark"){
+        return;
+      }
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
+  }
+
+    const setLightTheme = ()=>{
+      let currentTheme = localStorage.getItem("theme");
+      if(currentTheme === "light"){
+        return;
+      }
+      setTheme("light");
+      localStorage.setItem("theme", "light");
+  }
+
   return {
     theme,
-    setTheme,
+    setDarkTheme,
+    setLightTheme
   };
 }
