@@ -1,0 +1,13 @@
+{
+  "header": {
+    "title": "Vehicle Quotation Tool"
+  },
+
+  "footer": {
+    "title": "Boolean — Quotes",
+    "description": "A professional solution for fast quote generation.",
+    "email": "Email: info@boolean.com",
+    "assistance": "Support: support@boolean.com",
+    "rights": "Boolean — All rights reserved."
+  }
+}
