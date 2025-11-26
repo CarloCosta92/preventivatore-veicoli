@@ -5,10 +5,13 @@ import MultiStepForm from "./pages/MultiStepForm";
 import User from "./pages/User";
 import DefaultLayout from "./layout/DefaultLayout";
 import { R_HOME, R_QUOTATION, R_USER } from "./data/Path";
+import { GlobalProvider } from "./context/GlobalContext";
+
 function App() {
   return (
     <>
-      <BrowserRouter>
+    <GlobalProvider>
+        <BrowserRouter>
         <Routes>
           <Route path={R_HOME} element={<DefaultLayout />}>
             <Route index element={<Home />} />
@@ -17,6 +20,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+    </GlobalProvider>
     </>
   );
 }

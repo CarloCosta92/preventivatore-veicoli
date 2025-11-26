@@ -1,6 +1,8 @@
+import { useState } from "react";
+
 export default function useTheme() {
   const [theme, setTheme] = useState(() => {
-    let currentTheme = JSON.parse(localStorage.getItem("theme"));
+    let currentTheme = localStorage.getItem("theme");
     if (!currentTheme) {
       localStorage.setItem("theme", "light");
       currentTheme = "light";
