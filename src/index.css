@@ -1,1 +1,90 @@
 @import "tailwindcss";
+
+
+/* LIGHT MODE  */
+:root {
+  /* Background */
+  --bg-default: #ffffff;
+  --bg-alt: #f3f4f6;
+
+  /* Text */
+  --text-default: #1f2937;
+  --text-muted: #6b7280;
+
+  /* Primary */
+  --primary: #10b981;
+  --primary-hover: #059669;
+}
+
+/* DARK MODE  */
+.dark {
+  --bg-default: #1f2937;
+  --bg-alt: #374151;
+
+  --text-default: #f3f4f6;
+  --text-muted: #9ca3af;
+
+  --primary: #34d399;
+  --primary-hover: #10b981;
+}
+
+/* DESIGN TOKENS  */
+@theme {
+  --color-bg-default: var(--bg-default);
+  --color-bg-alt: var(--bg-alt);
+
+  --color-text-default: var(--text-default);
+  --color-text-muted: var(--text-muted);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+}
+
+
+/* UTILITY CLASSES  */
+
+@layer utilities {
+
+  /* Background */
+  .bg-background-default {
+    background-color: var(--color-bg-default);
+  }
+
+  .bg-background-alt {
+    background-color: var(--color-bg-alt);
+  }
+
+  /* Text */
+  .text-default {
+    color: var(--color-text-default);
+  }
+
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+
+  /* Buttons / Primary */
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .hover\:bg-primary-hover:hover {
+    background-color: var(--color-primary-hover);
+  }
+}
+
+/* BROWSER HELP LIGHT AND DARK MODE  */
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+
+/* PERSONALIZED CLASSES FOR COMPONENTS W/TAILWIND  */
+
+.btn {
+    @apply font-bold py-2 px-4 rounded border-2 bg-gray-700;
+  }

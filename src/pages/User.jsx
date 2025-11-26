@@ -5,7 +5,11 @@ const User = () => {
   const {theme, setDarkTheme, setLightTheme} = useGlobalContext();
   return (
     <>
-      <h1 className={theme === "dark" ? darkMode : lightMode}>pagina User</h1>
+      <h1>pagina User</h1>
+      <div>
+        Preferenze Tema :
+        <button type="button" className="btn" onClick={setDarkTheme}>DARK</button> <button onClick={setLightTheme}>LIGHT</button>
+      </div>
     </>
   );
 };
