@@ -9,5 +9,27 @@
     "email": "Email: info@boolean.com",
     "assistance": "Assistenza: support@boolean.com",
     "rights": "Boolean — Tutti i diritti riservati."
+  },
+
+  "hero": {
+    "title": "Preventivi auto in pochi secondi",
+    "description": "Inserisci i dati del veicolo, confronta le opzioni e genera un preventivo professionale pronto da inviare al cliente.",
+    "cta": "Inizia ora"
+  },
+
+  "instruction": {
+    "title": "Come funziona",
+    "step1": {
+      "title": "1. Inserisci i dati del veicolo",
+      "description": "Marca, modello, anno, chilometri, alimentazione e optional. Il sistema riconosce automaticamente configurazioni e varianti."
+    },
+    "step2": {
+      "title": "2. Calcolo automatico del preventivo",
+      "description": "Ottieni subito un prezzo suggerito in base a parametri tecnici, valutazione media di mercato e personalizzazioni del cliente."
+    },
+    "step3": {
+      "title": "3. Esporta e condividi",
+      "description": "Genera un PDF professionale pronto per essere inviato. Perfetto per concessionari, rivenditori o privati che vogliono velocità e precisione."
+    }
   }
 }

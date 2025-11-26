@@ -9,5 +9,25 @@
     "email": "Email: info@boolean.com",
     "assistance": "Support: support@boolean.com",
     "rights": "Boolean — All rights reserved."
+  },
+  "hero": {
+    "title": "Vehicle quotes in seconds",
+    "description": "Enter the vehicle details, compare options, and generate a professional quote ready to send to the customer.",
+    "cta": "Get started"
+  },
+  "instruction": {
+    "title": "How it works",
+    "step1": {
+      "title": "1. Enter the vehicle details",
+      "description": "Brand, model, year, mileage, fuel type and optional features. The system automatically recognizes configurations and variants."
+    },
+    "step2": {
+      "title": "2. Automatic quote calculation",
+      "description": "Get an instant suggested price based on technical parameters, average market valuation and customer customizations."
+    },
+    "step3": {
+      "title": "3. Export and share",
+      "description": "Generate a professional PDF ready to be sent. Perfect for dealerships, resellers or private sellers who want speed and accuracy."
+    }
   }
 }
