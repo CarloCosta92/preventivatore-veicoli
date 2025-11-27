@@ -34,7 +34,7 @@ const LanguageSwitcher = () => {
         // Chiama la funzione di cambio quando il valore cambia
         onChange={handleLanguageChange}
         // Tailwind classes per lo stile del menu a discesa
-        className=" bg-gray-900 px-2 py-1 border rounded-md transition duration-300 hover:scale-125 transform block focus:outline-none cursor-pointer appearance-none"
+        className=" bg-gray-900 px-2 py-1 border rounded-md transition duration-300 hover:scale-110 transform block focus:outline-none cursor-pointer appearance-none"
       >
         {languages.map((lang) => (
           <option key={lang.code} value={lang.code}>

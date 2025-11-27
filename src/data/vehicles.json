@@ -1,0 +1,243 @@
+[
+    {
+      "id": 101,
+      "vehicleType": "auto",
+      "brand": "Fiat",
+      "model": "Panda",
+      "basePrice": 15000,
+      "img": "https://cdnwp.dealerk.com/eed49ed7/uploads/sites/979/2020/06/01-768x541.jpg"
+    },
+    {
+      "id": 102,
+      "vehicleType": "auto",
+      "brand": "Volkswagen",
+      "model": "Golf 8",
+      "basePrice": 28500,
+      "img": "https://autodesignmagazine.com/wp-content/uploads/2019/10/2019102501_VW_Golf.jpg"
+    },
+    {
+      "id": 103,
+      "vehicleType": "auto",
+      "brand": "Tesla",
+      "model": "Model 3",
+      "basePrice": 42000,
+      "img": "https://foto1.newsauto.it/wp-content/uploads/2025/10/Tesla-Model-3-Standard-1-780x470.jpg"
+    },
+    {
+      "id": 104,
+      "vehicleType": "auto",
+      "brand": "Mercedes-Benz",
+      "model": "Classe A",
+      "basePrice": 35000,
+      "img": "https://www.padovastar.it/data_files/custom_listing/npd-classe-a-thxqxx.webp"
+    },
+    {
+      "id": 105,
+      "vehicleType": "auto",
+      "brand": "Ford",
+      "model": "Puma ST-Line",
+      "basePrice": 24000,
+      "img": "https://www.fordcarpoint.it/images/vehicles/4421733/0/large"
+    },
+    {
+      "id": 106,
+      "vehicleType": "auto",
+      "brand": "BMW",
+      "model": "Serie 3",
+      "basePrice": 48000,
+      "img": "https://center.it/wp-content/uploads/2024/04/bmw-3-series-modellfinder-825x483.png"
+    },
+    {
+      "id": 107,
+      "vehicleType": "auto",
+      "brand": "Toyota",
+      "model": "Yaris Cross",
+      "basePrice": 26500,
+      "img": "https://images.toyota-europe.com/it/product-token/44222e35-d92b-4b53-a863-e7acac3ec6a4/vehicle/0adbcf0d-8a22-48c0-a428-5494da56a862/width/2048/height/1165/scale-mode/1/padding/0/background-colour/FFFFFF/image-quality/75/day-exterior-3_040_FB20.webp"
+    },
+    {
+      "id": 108,
+      "vehicleType": "auto",
+      "brand": "Peugeot",
+      "model": "208 Allure",
+      "basePrice": 19500,
+      "img": "https://storage.edidomus.it/ListinoAuto/FOTO_A_16_9_640/00062857.JPG?im=Resize=(1304)"
+    },
+    {
+      "id": 109,
+      "vehicleType": "auto",
+      "brand": "Audi",
+      "model": "Q3 Sportback",
+      "basePrice": 45000,
+      "img": "https://nbg1.your-objectstorage.com/carleasepolska/media/cache/car_details_thumbnail_big/https---nbg1.your-objectstorage.com/carleasepolska/uploads/a2990b5f-1b11-4e74-90a0-9bc10ef98a01_webp_converted.webp"
+    },
+    {
+      "id": 110,
+      "vehicleType": "auto",
+      "brand": "Jeep",
+      "model": "Renegade",
+      "basePrice": 27500,
+      "img": "https://www.stellantisclub.it/wp-content/uploads/2024/06/renegade-1.jpg"
+    },
+    {
+      "id": 201,
+      "vehicleType": "moto",
+      "brand": "Honda",
+      "model": "CB500F",
+      "basePrice": 6500,
+      "img": "https://www.honda.it/content/dam/local/italy/motorcycles/news-and-events/306310_2021_Honda_CB500F.jpg/_jcr_content/renditions/c2.jpg"
+    },
+    {
+      "id": 202,
+      "vehicleType": "moto",
+      "brand": "Yamaha",
+      "model": "MT-07",
+      "basePrice": 7800,
+      "img": "https://img.stcrm.it/images/40326294/3000x/2025-yamaha-mt07a-eu-ice_storm-360-degrees-001-03.jpg"
+    },
+    {
+      "id": 203,
+      "vehicleType": "moto",
+      "brand": "Ducati",
+      "model": "Panigale V4",
+      "basePrice": 25000,
+      "img": "https://img.stcrm.it/images/20522734/3000x/ducati-panigale-v4-1100-2020-09.jpg"
+    },
+    {
+      "id": 204,
+      "vehicleType": "moto",
+      "brand": "Kawasaki",
+      "model": "Ninja 400",
+      "basePrice": 6000,
+      "img": "https://img.stcrm.it/images/29842293/3000x/23my_ninja_650_gn1_stu__2_-jpg.jpg"
+    },
+    {
+      "id": 205,
+      "vehicleType": "moto",
+      "brand": "BMW",
+      "model": "R 1250 GS",
+      "basePrice": 18500,
+      "img": "https://img.stcrm.it/images/23451676/3000x/bmw-r-1250-gs-2021-09.jpg"
+    },
+    {
+      "id": 206,
+      "vehicleType": "moto",
+      "brand": "Aprilia",
+      "model": "RS 660",
+      "basePrice": 11500,
+      "img": "https://img.stcrm.it/images/40589086/HOR_STD/800x/01-aprilia-rs-660-factory-dark-banshee.jpg"
+    },
+    {
+      "id": 207,
+      "vehicleType": "moto",
+      "brand": "Harley-Davidson",
+      "model": "Iron 883",
+      "basePrice": 12000,
+      "img": "https://img.stcrm.it/images/19895320/3000x/harley-davidson-sportster-883-iron-2020-02.jpg"
+    },
+    {
+      "id": 208,
+      "vehicleType": "moto",
+      "brand": "KTM",
+      "model": "390 Duke",
+      "basePrice": 5500,
+      "img": "https://img.stcrm.it/images/33747551/3000x/542077_my24-ktm-390-duke_studio_front-right_04_studio_global_europe-jpg.jpg"
+    },
+    {
+      "id": 209,
+      "vehicleType": "moto",
+      "brand": "Suzuki",
+      "model": "GSX-S1000",
+      "basePrice": 12500,
+      "img": "https://img.stcrm.it/images/36360038/3000x/01_risultato-jpg.jpg"
+    },
+    {
+      "id": 210,
+      "vehicleType": "moto",
+      "brand": "Triumph",
+      "model": "Street Triple R",
+      "basePrice": 9900,
+      "img": "https://img.stcrm.it/images/21498261/3000x/triumph-street-triple-r-2020-16.jpg"
+    },
+
+    {
+      "id": 301,
+      "vehicleType": "furgone",
+      "brand": "Fiat",
+      "model": "Ducato",
+      "basePrice": 25000,
+      "img": "https://cdn.motor1.com/images/mgl/rKZkM9/s1/fiat-professional-ducato-my-2024.webp"
+    },
+    {
+      "id": 302,
+      "vehicleType": "furgone",
+      "brand": "Ford",
+      "model": "Transit Custom",
+      "basePrice": 28000,
+      "img": "https://suncar.it/wp-content/uploads/2023/05/ford-Transit_Sport-eu-ford-Ext_Fr_3_4_Dynamic_V710-16x9-2160x1215.jpg.renditions.extra-large_risultato-9.webp"
+    },
+    {
+      "id": "303",
+      "vehicleType": "furgone",
+      "brand": "Mercedes-Benz",
+      "model": "Sprinter",
+      "basePrice": 32000,
+      "img": "https://mezzicommerciali.it/wp-content/uploads/bfi_thumb/Mercedes%20Sprinter%20Furgone-ouv92iwq18jw87se06yhbfrfll5v8yrvxrs6rxjfu0.jpg"
+    },
+    {
+      "id": 304,
+      "vehicleType": "furgone",
+      "brand": "Renault",
+      "model": "Master",
+      "basePrice": 26500,
+      "img": "https://cdn.motor1.com/images/mgl/rKZkM9/s1/fiat-professional-ducato-my-2024.webp"
+    },
+    {
+      "id": 305,
+      "vehicleType": "furgone",
+      "brand": "Volkswagen",
+      "model": "Caddy Cargo",
+      "basePrice": 19000,
+      "img": "https://mezzicommerciali.it/wp-content/uploads/bfi_thumb/Renault%20Master%20Furgone-r36x0oam91w9nidrym0daljo4ww8gwnl6fdpxueo6g.jpg"
+    },
+    {
+      "id": 306,
+      "vehicleType": "furgone",
+      "brand": "Citroën",
+      "model": "Jumpy",
+      "basePrice": 23500,
+      "img": "https://www.clubalfa.it/wp-content/uploads/2025/01/Citroen-Jumpy.jpg"
+    },
+    {
+      "id": 307,
+      "vehicleType": "furgone",
+      "brand": "Peugeot",
+      "model": "Boxer",
+      "basePrice": 27000,
+      "img": "https://mezzicommerciali.it/wp-content/uploads/bfi_thumb/Peugeot%20Boxer%20Persone-ouv972gn2erscd6th5nkdahmymrqgat6k9aoa2sxrc.jpg"
+    },
+    {
+      "id": 308,
+      "vehicleType": "furgone",
+      "brand": "Iveco",
+      "model": "Daily",
+      "basePrice": 35000,
+      "img": "https://cdn-datak.motork.net/configurator-imgs/trucks/it/800/IVECO/DAILY/8658_FURGONE-4-PORTE/iveco-daily-van-front-view.jpg"
+    },
+    {
+      "id": 309,
+      "vehicleType": "furgone",
+      "brand": "Opel",
+      "model": "Vivaro",
+      "basePrice": 24500,
+      "img": "https://mezzicommerciali.it/wp-content/uploads/bfi_thumb/Opel%20Vivaro%20Furgone-ouv96iq12w0rkjzhof4eexgyhjh0ynmthjlh79m7e0.jpg"
+    },
+    {
+      "id": 310,
+      "vehicleType": "furgone",
+      "brand": "Nissan",
+      "model": "NV400",
+      "basePrice": 29000,
+      "img": "https://cms-assets.autoscout24.com/uaddx06iwzdz/5KRoqavYJgrLFZIlhSfnMn/e50930a62b3272f181321ef5d61306be/nissan-nv400-front.jpeg?w=1100&fm=webp"
+    }
+  ]
