@@ -8,6 +8,7 @@ import StepVehicleRegistration from '../components/form/StepVehicleRegistration'
 export default function MultiStepForm(){
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({}); 
+  const [selectedVehicleId, setSelectedVehicleId] = useState(null);
 
   const steps = [
     <StepVehichleSelector/>, 
@@ -37,7 +38,9 @@ export default function MultiStepForm(){
     currentStep: currentStep,
     stepsLength: steps.length,
     goToNextStep: goToNextStep,
-    goToPrevStep: goToPrevStep
+    goToPrevStep: goToPrevStep,
+    selectedVehicleId: selectedVehicleId,
+    setSelectedVehicleId: setSelectedVehicleId
   })
 
   return (

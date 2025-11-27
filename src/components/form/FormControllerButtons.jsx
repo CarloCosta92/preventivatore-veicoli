@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 export default function FormControllerButtons ({props}){
 
     const { t } = useTranslation();
-    const {stepsLength, currentStep, goToNextStep, goToPrevStep} = props;
+    const {stepsLength, currentStep, goToNextStep, goToPrevStep, selectedVehicleId} = props;
     const isFirstStep = currentStep === 0;
     const isLastStep = currentStep === stepsLength - 1;
 
@@ -12,16 +12,23 @@ export default function FormControllerButtons ({props}){
         {!isFirstStep && 
             <button 
                 className="default-btn"
-                onClick={goToPrevStep}
+                onClick={(e)=>{
+                    e.stopPropagation()
+                    goToPrevStep()
+                }}
             >
                 {t("form.controlbutton.back")}
             </button>
         }
         <button 
-                className="default-btn"
-                onClick={goToNextStep}
+                disabled={!selectedVehicleId}
+                className="default-btn ml-auto default-button:disabled"
+                onClick={(e)=>{
+                    e.stopPropagation()
+                    goToNextStep()
+                }}
             >
                 {isLastStep ? t("form.controlbutton.send"): t("form.controlbutton.continue")}
-            </button>
+        </button>
     </div>
 }

@@ -89,6 +89,10 @@ html.dark {
     @apply bg-primary hover:bg-primary-hover hover:cursor-pointer text-white font-semibold px-4 py-2 rounded-lg
   }
 
+.default-btn:disabled {
+    @apply bg-gray-400 cursor-not-allowed
+}
+
 .form-container {
   @apply 
     w-[90vw] 
@@ -124,7 +128,7 @@ html.dark {
   @apply 
     grid 
     gap-4 
-    grid-cols-2        
+    grid-cols-1        
     md:grid-cols-3     
     lg:grid-cols-4    
     w-full             
@@ -139,8 +143,6 @@ html.dark {
   overflow-hidden
   rounded-xl 
   shadow-lg 
-  border-2 
-  border-transparent
   hover:border-primary
-  transition duration-300
+  hover:border-2
 }
