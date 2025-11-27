@@ -27,9 +27,10 @@ export default function StepVehichleSelector({
     return <h2 className="font-bold text-3xl text-center text-red-500">Errore: Nessun Veicolo trovato</h2>
   }
   if(isLoading){
-    return <h2 className="font-bold text-3xl text-center text-blue-400">Caricamento Veicoli in Corso</h2>
+    return <div className="flex justify-center align-middle">
+        <h2 className=" font-bold text-3xl text-center text-text-default">Caricamento Veicoli in Corso</h2>
+    </div> 
   }
-
  
 
   return (
