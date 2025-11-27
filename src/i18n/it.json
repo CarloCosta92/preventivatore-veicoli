@@ -55,6 +55,12 @@
     },
     "stepYear":{
       "title":"Scegli l'anno di immatricolazione"
-    }
-  
+    },
+  "stepEngineSize":{
+      "title":"Cilindrata"
+  },
+  "stepVehichleSelector":{
+    "error1":"Nessun Veicolo trovato",
+    "error2":"Caricamento in Corso"
+  }
 }

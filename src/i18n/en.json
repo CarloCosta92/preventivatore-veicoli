@@ -53,6 +53,13 @@
     },
      "stepYear":{
       "title":"Choose year"
-    }
+    },
+      "stepEngineSize":{
+      "title":"Capacity"
+  },
+    "stepVehichleSelector":{
+    "error1":"No veichle founded",
+    "error2":"Loading"
+  }
   
 }

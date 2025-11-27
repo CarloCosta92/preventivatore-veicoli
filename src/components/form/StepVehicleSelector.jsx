@@ -12,39 +12,54 @@ export default function StepVehichleSelector({
 }) {
   const { t } = useTranslation();
 
-  const {error, vehicles, isLoading} = useGlobalContext();
+  const { error, vehicles, isLoading } = useGlobalContext();
   const [selectTypeOption, setSelectTypeOption] = useState("");
 
-  const filteredVehicles = useMemo(()=>{
+  const filteredVehicles = useMemo(() => {
     let currentVehicles = vehicles;
-    if(selectTypeOption){
-      currentVehicles = vehicles.filter(v => v.vehicleType === selectTypeOption);
+    if (selectTypeOption) {
+      currentVehicles = vehicles.filter(
+        (v) => v.vehicleType === selectTypeOption
+      );
     }
-    return currentVehicles
-  }, [vehicles, selectTypeOption])
+    return currentVehicles;
+  }, [vehicles, selectTypeOption]);
 
-   if(error){
-    return <h2 className="font-bold text-3xl text-center text-red-500">Errore: Nessun Veicolo trovato</h2>
+  if (error) {
+    return (
+      <h2 className="font-bold text-3xl text-center text-red-500">
+        {t("stepVehichleSelector.error1")}
+      </h2>
+    );
   }
-  if(isLoading){
-    return <div className="flex justify-center align-middle">
-        <h2 className=" font-bold text-3xl text-center text-text-default">Caricamento Veicoli in Corso</h2>
-    </div> 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center align-middle">
+        <h2 className=" font-bold text-3xl text-center text-text-default">
+          {t("stepVehichleSelector.error2")}
+        </h2>
+      </div>
+    );
   }
- 
 
   return (
     <div className="step-container">
-      <h2 className="step-container-title">
-        {t("veichleSelector.title")}
-      </h2>
+      <h2 className="step-container-title">{t("veichleSelector.title")}</h2>
       <div className="flex my-3">
-        <select className="ml-auto  px-3 py-2 border-2 border-primary bg-bg-default hover:bg-bg-alt rounded-lg shadow-lg text-text-default text-xl appearance-none cursor-pointer hover:border-primary-hover focus:outline-none" onChange={(e)=>setSelectTypeOption(e.target.value)} name="selectVehicleType" id="selectVehicleType">
+        <select
+          className="ml-auto  px-3 py-2 border-2 border-primary bg-bg-default hover:bg-bg-alt rounded-lg shadow-lg text-text-default text-xl appearance-none cursor-pointer hover:border-primary-hover focus:outline-none"
+          onChange={(e) => setSelectTypeOption(e.target.value)}
+          name="selectVehicleType"
+          id="selectVehicleType"
+        >
           <option value="">TUTTI</option>
-          {[...new Set(vehicles.map(v => v.vehicleType))].map((vT, i)=><option key={i} value={vT}>{vT.toUpperCase()}</option>)}
+          {[...new Set(vehicles.map((v) => v.vehicleType))].map((vT, i) => (
+            <option key={i} value={vT}>
+              {vT.toUpperCase()}
+            </option>
+          ))}
         </select>
       </div>
-  
 
       <div
         className="
@@ -59,14 +74,14 @@ export default function StepVehichleSelector({
       >
         <div className="vehicle-card-container">
           {filteredVehicles.map((v) => {
-            return (
-              <VehicleCard key={v.id} vehicle={v}/>
-            );
+            return <VehicleCard key={v.id} vehicle={v} />;
           })}
         </div>
       </div>
       <div className="my-4">
-          <FormControllerButtons props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}/>
+        <FormControllerButtons
+          props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}
+        />
       </div>
     </div>
   );
