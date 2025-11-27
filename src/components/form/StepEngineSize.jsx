@@ -1,10 +1,21 @@
+import { useTranslation } from "react-i18next";
 import FormControllerButtons from "./FormControllerButtons";
 
-export default function StepEngineSize({stepsLength, currentStep, goToNextStep, goToPrevStep}){
+export default function StepEngineSize({
+  stepsLength,
+  currentStep,
+  goToNextStep,
+  goToPrevStep,
+}) {
+  const { t } = useTranslation();
 
-    return <label>
-        <h2>Scegli la cilindrata</h2>
+  return (
+    <label>
+      <h2>{t("stepEngine.title")}</h2>
 
-        <FormControllerButtons props={{stepsLength, currentStep, goToNextStep, goToPrevStep}}/>
+      <FormControllerButtons
+        props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}
+      />
     </label>
+  );
 }

@@ -35,6 +35,24 @@
       "back": "Back",
       "continue": "Continue",
       "send": "Send"
+      
     }
-  }
+  },
+ 
+     "veichleSelector":{
+    "title":"Choose your veichle!"
+  },
+    "stepEngine":{
+      "title":"Choose engine capacity"
+    },
+    "stepFuel":{
+      "title":"Choose fuel type"
+    },
+    "stepOptional":{
+      "title":"Choose optionals"
+    },
+     "stepYear":{
+      "title":"Choose year"
+    }
+  
 }

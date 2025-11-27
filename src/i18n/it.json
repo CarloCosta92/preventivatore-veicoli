@@ -39,5 +39,22 @@
       "continue": "Continua",
       "send": "Invia"
     }
-  }
+  },
+  "veichleSelector":{
+    "title":"Scegli il tuo Veicolo!"
+  },
+
+     "stepEngine":{
+      "title":"Scegli la cilindrata"
+    },
+    "stepFuel":{
+      "title":"Scegli l'alimentazione"
+    },
+    "stepOptional":{
+      "title":"Scegli gli optional"
+    },
+    "stepYear":{
+      "title":"Scegli l'anno di immatricolazione"
+    }
+  
 }

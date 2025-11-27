@@ -1,10 +1,21 @@
- import FormControllerButtons from "./FormControllerButtons";
- 
- export default function StepOptionals({stepsLength, currentStep, goToNextStep, goToPrevStep}){
+import { useTranslation } from "react-i18next";
+import FormControllerButtons from "./FormControllerButtons";
 
-    return <label>
-        <h2>Scegli la cilindrata</h2>
+export default function StepOptionals({
+  stepsLength,
+  currentStep,
+  goToNextStep,
+  goToPrevStep,
+}) {
+  const { t } = useTranslation();
 
-       <FormControllerButtons props={{stepsLength, currentStep, goToNextStep, goToPrevStep}}/>
+  return (
+    <label>
+      <h2>{t("stepOptional.title")}</h2>
+
+      <FormControllerButtons
+        props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}
+      />
     </label>
+  );
 }
