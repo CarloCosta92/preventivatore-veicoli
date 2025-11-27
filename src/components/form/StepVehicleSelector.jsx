@@ -47,7 +47,7 @@ export default function StepVehichleSelector({
       <h2 className="step-container-title">{t("stepVehicleSelector.title")}</h2>
       <div className="flex my-3">
         <select
-          className="ml-auto  px-3 py-2 border-2 border-primary bg-bg-default hover:bg-bg-alt rounded-lg shadow-lg text-text-default text-xl appearance-none cursor-pointer hover:border-primary-hover focus:outline-none"
+          className="ml-auto px-3 py-2  border-2 border-primary bg-bg-default hover:bg-bg-alt rounded-lg shadow-lg text-text-default text-xl text-center font-bold appearance-none cursor-pointer hover:border-primary-hover focus:outline-none"
           onChange={(e) => setSelectTypeOption(e.target.value)}
           name="selectVehicleType"
           id="selectVehicleType"
