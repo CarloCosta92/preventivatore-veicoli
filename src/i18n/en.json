@@ -58,6 +58,7 @@
       "title":"Capacity"
   },
     "stepVehichleSelector":{
+      "title":"ALL",
     "error1":"No veichle founded",
     "error2":"Loading"
   }

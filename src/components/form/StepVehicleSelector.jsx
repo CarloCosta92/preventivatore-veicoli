@@ -52,7 +52,7 @@ export default function StepVehichleSelector({
           name="selectVehicleType"
           id="selectVehicleType"
         >
-          <option value="">TUTTI</option>
+          <option value="">{t("stepVehichleSelector.title")}</option>
           {[...new Set(vehicles.map((v) => v.vehicleType))].map((vT, i) => (
             <option key={i} value={vT}>
               {vT.toUpperCase()}

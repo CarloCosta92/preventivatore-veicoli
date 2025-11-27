@@ -60,7 +60,9 @@
       "title":"Cilindrata"
   },
   "stepVehichleSelector":{
+    "title":"TUTTI",
     "error1":"Nessun Veicolo trovato",
     "error2":"Caricamento in Corso"
   }
+
 }
