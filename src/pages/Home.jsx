@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { R_QUOTATION } from "../data/Path";
 
+
 const Home = () => {
   const { t } = useTranslation();
   return (
@@ -11,7 +12,7 @@ const Home = () => {
         <h1 className="text-4xl font-bold">{t("hero.title")}</h1>
         <p className="text-muted max-w-xl mx-auto">{t("hero.description")}</p>
 
-          <NavLink  className="bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg" to={R_QUOTATION}>{t("hero.cta")}</NavLink>
+          <NavLink  className="bg-primary hover:bg-primary-hover text-white text-2xl font-semibold px-8 py-3 rounded-lg" to={R_QUOTATION}>{t("hero.cta")}</NavLink>
       </div>
 
       {/*  istruzioni */}

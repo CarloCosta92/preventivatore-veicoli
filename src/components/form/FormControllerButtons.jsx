@@ -1,5 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 export default function FormControllerButtons ({props}){
 
+    const { t } = useTranslation();
     const {stepsLength, currentStep, goToNextStep, goToPrevStep} = props;
     const isFirstStep = currentStep === 0;
     const isLastStep = currentStep === stepsLength - 1;
@@ -8,17 +11,17 @@ export default function FormControllerButtons ({props}){
     return <div className="flex justify-between w-full">
         {!isFirstStep && 
             <button 
-                className="bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg"
+                className="default-btn"
                 onClick={goToPrevStep}
             >
-                Indietro
+                {t("form.controlbutton.back")}
             </button>
         }
         <button 
-                className="bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg"
+                className="default-btn"
                 onClick={goToNextStep}
             >
-                {isLastStep ? "Invia" : "Continua"}
+                {isLastStep ? t("form.controlbutton.send"): t("form.controlbutton.continue")}
             </button>
     </div>
 }

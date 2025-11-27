@@ -85,8 +85,8 @@ html.dark {
 
 /* PERSONALIZED CLASSES FOR COMPONENTS W/TAILWIND  */
 
-.btn {
-    @apply font-bold py-2 px-4 rounded border-2 bg-gray-700;
+.default-btn {
+    @apply bg-primary hover:bg-primary-hover hover:cursor-pointer text-white font-semibold px-4 py-2 rounded-lg
   }
 
 .form-container {

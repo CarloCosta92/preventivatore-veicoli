@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "./LanguageSwitcher";
+
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -19,8 +19,6 @@ const Footer = () => {
           <li>{t("footer.assistance")}</li>
         </ul>
       </div>
-
-      <LanguageSwitcher />
 
       <div className="text-center text-gray-500 text-xs mt-6 border-t border-gray-700 pt-4">
         {t("footer.rights")}
