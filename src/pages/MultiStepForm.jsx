@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import StepVehichleSelector from '../components/StepVehicleSelector';
-import StepFuelSystem from '../components/StepFuelSystem';
-import StepEngineSize from '../components/StepEngineSize';
-import StepOptionals from '../components/StepOptionals'
-import StepVehicleRegistration from '../components/StepVehicleRegistration'
+import StepVehichleSelector from '../components/form/StepVehicleSelector';
+import StepFuelSystem from '../components/form/StepFuelSystem';
+import StepEngineSize from '../components/form/StepEngineSize';
+import StepOptionals from '../components/form/StepOptionals'
+import StepVehicleRegistration from '../components/form/StepVehicleRegistration'
 
 export default function MultiStepForm(){
   const [currentStep, setCurrentStep] = useState(0);

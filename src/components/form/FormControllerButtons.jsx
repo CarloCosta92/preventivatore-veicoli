@@ -1,11 +1,11 @@
-export default function FormControllerButtons (props){
+export default function FormControllerButtons ({props}){
 
     const {stepsLength, currentStep, goToNextStep, goToPrevStep} = props;
     const isFirstStep = currentStep === 0;
     const isLastStep = currentStep === stepsLength - 1;
 
     console.log(currentStep, stepsLength);
-    return <div>
+    return <div className="flex justify-between w-full">
         {!isFirstStep && 
             <button 
                 className="bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg"
