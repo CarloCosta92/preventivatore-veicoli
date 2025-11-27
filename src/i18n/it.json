@@ -40,9 +40,6 @@
       "send": "Invia"
     }
   },
-  "veichleSelector":{
-    "title":"Scegli il tuo Veicolo!"
-  },
 
      "stepEngine":{
       "title":"Scegli la cilindrata"
@@ -59,8 +56,9 @@
   "stepEngineSize":{
       "title":"Cilindrata"
   },
-  "stepVehichleSelector":{
-    "title":"TUTTI",
+  "stepVehicleSelector":{
+    "title":"Scegli il tuo Veicolo!",
+    "all":"TUTTI",
     "error1":"Nessun Veicolo trovato",
     "error2":"Caricamento in Corso"
   }

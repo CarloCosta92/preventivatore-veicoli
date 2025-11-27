@@ -28,7 +28,7 @@ export default function StepVehichleSelector({
   if (error) {
     return (
       <h2 className="font-bold text-3xl text-center text-red-500">
-        {t("stepVehichleSelector.error1")}
+        {t("stepVehicleSelector.error1")}
       </h2>
     );
   }
@@ -36,7 +36,7 @@ export default function StepVehichleSelector({
     return (
       <div className="flex justify-center align-middle">
         <h2 className=" font-bold text-3xl text-center text-text-default">
-          {t("stepVehichleSelector.error2")}
+          {t("stepVehicleSelector.error2")}
         </h2>
       </div>
     );
@@ -44,7 +44,7 @@ export default function StepVehichleSelector({
 
   return (
     <div className="step-container">
-      <h2 className="step-container-title">{t("veichleSelector.title")}</h2>
+      <h2 className="step-container-title">{t("stepVehicleSelector.title")}</h2>
       <div className="flex my-3">
         <select
           className="ml-auto  px-3 py-2 border-2 border-primary bg-bg-default hover:bg-bg-alt rounded-lg shadow-lg text-text-default text-xl appearance-none cursor-pointer hover:border-primary-hover focus:outline-none"
@@ -52,7 +52,7 @@ export default function StepVehichleSelector({
           name="selectVehicleType"
           id="selectVehicleType"
         >
-          <option value="">{t("stepVehichleSelector.title")}</option>
+          <option value="">{t("stepVehicleSelector.all")}</option>
           {[...new Set(vehicles.map((v) => v.vehicleType))].map((vT, i) => (
             <option key={i} value={vT}>
               {vT.toUpperCase()}

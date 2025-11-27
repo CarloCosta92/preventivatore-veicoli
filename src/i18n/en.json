@@ -38,10 +38,6 @@
       
     }
   },
- 
-     "veichleSelector":{
-    "title":"Choose your veichle!"
-  },
     "stepEngine":{
       "title":"Choose engine capacity"
     },
@@ -57,10 +53,11 @@
       "stepEngineSize":{
       "title":"Capacity"
   },
-    "stepVehichleSelector":{
-      "title":"ALL",
-    "error1":"No veichle founded",
-    "error2":"Loading"
+    "stepVehicleSelector":{
+      "title":"Choose your vehicle!",
+      "all":"ALL",
+      "error1":"No vehicle founded",
+      "error2":"Loading"
   }
   
 }
