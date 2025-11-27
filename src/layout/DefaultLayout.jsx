@@ -8,10 +8,10 @@ const DefaultLayout = () => {
       <div className="flex flex-col min-h-screen">
         <Header />
 
-        <main className="flex-1 bg-background-default">
+        <main className="flex-1 justify-center bg-background-default p-6">
           <Outlet />
         </main>
-
+        
         <Footer />
       </div>
     </>

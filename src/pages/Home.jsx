@@ -11,9 +11,7 @@ const Home = () => {
         <h1 className="text-4xl font-bold">{t("hero.title")}</h1>
         <p className="text-muted max-w-xl mx-auto">{t("hero.description")}</p>
 
-        <button className="bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg">
-          <NavLink to={R_QUOTATION}>{t("hero.cta")}</NavLink>
-        </button>
+          <NavLink  className="bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg" to={R_QUOTATION}>{t("hero.cta")}</NavLink>
       </div>
 
       {/*  istruzioni */}
