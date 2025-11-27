@@ -1,7 +1,7 @@
 import FormControllerButtons from "./FormControllerButtons";
 import VehicleCard from "./VehicleCard";
-import vehicles from "../../data/vehicles.json";
 import { useTranslation } from "react-i18next";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 export default function StepVehichleSelector({
   stepsLength,
@@ -13,12 +13,24 @@ export default function StepVehichleSelector({
 }) {
   const { t } = useTranslation();
 
-  console.log(vehicles);
+  const {error, vehicles, isLoading} = useGlobalContext();
+
+   if(error){
+    return <h2 className="font-bold text-3xl text-center text-red-500">Errore: Nessun Veicolo trovato</h2>
+  }
+  if(isLoading){
+    return <h2 className="font-bold text-3xl text-center text-blue-400">Caricamento Veicoli in Corso</h2>
+  }
+
+ 
+
   return (
     <div className="w-full h-full flex flex-col justify-between p-4">
       <h2 className="text-text-default text-3xl text-center font-extrabold">
         {t("veichleSelector.title")}
       </h2>
+
+  
 
       <div
         className="
