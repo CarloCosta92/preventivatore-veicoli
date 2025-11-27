@@ -105,3 +105,42 @@ html.dark {
     bg-bg-default
     hover:shadow-2xl
 }
+
+.card-absolute-title {
+  @apply 
+    absolute 
+    inset-0 
+    flex
+    flex-col 
+    justify-end p-4 
+    bg-linear-to-t
+    from-gray-900/80 
+    to-transparent
+    text-white
+                              
+}
+
+.vehicle-card-container {
+  @apply 
+    grid 
+    gap-4 
+    grid-cols-2        
+    md:grid-cols-3     
+    lg:grid-cols-4    
+    w-full             
+    max-w-7xl   
+}
+
+.vehicle-card {                                
+@apply 
+  relative 
+  h-60 
+  cursor-pointer 
+  overflow-hidden
+  rounded-xl 
+  shadow-lg 
+  border-2 
+  border-transparent
+  hover:border-primary
+  transition duration-300
+}
