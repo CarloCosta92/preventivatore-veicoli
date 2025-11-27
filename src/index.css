@@ -138,11 +138,28 @@ html.dark {
 .vehicle-card {                                
 @apply 
   relative 
-  h-60 
+  h-[15rem] 
   cursor-pointer 
   overflow-hidden
   rounded-xl 
   shadow-lg 
   hover:border-primary
   hover:border-2
+}
+
+.step-container {
+  @apply 
+    w-full 
+    h-full 
+    flex 
+    flex-col
+    justify-between p-4
+}
+
+.step-container-title {
+  @apply 
+    text-text-default 
+    text-3xl 
+    text-center 
+    font-extrabold
 }

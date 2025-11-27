@@ -38,15 +38,12 @@ const GlobalProvider = ({ children }) => {
 
     useEffect(() => {
         getVehicles();
-        console.log(vehicles)
         
     }, []);
 
 
-  console.log(vehicles);
-
   return (
-    <GlobalContext.Provider value={{ ...themeData, vehicles, error, isLoading }}>
+    <GlobalContext.Provider value={{ ...themeData, vehicles, error, isLoading, currentVehicle, setCurrentVehicle }}>
       {children}
     </GlobalContext.Provider>
   );

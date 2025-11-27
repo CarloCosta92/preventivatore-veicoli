@@ -1,13 +1,17 @@
 import { useTranslation } from "react-i18next";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 export default function FormControllerButtons ({props}){
 
+    const {currentVehicle} = useGlobalContext();
     const { t } = useTranslation();
-    const {stepsLength, currentStep, goToNextStep, goToPrevStep, selectedVehicleId} = props;
+    const {stepsLength, currentStep, goToNextStep, goToPrevStep} = props;
     const isFirstStep = currentStep === 0;
     const isLastStep = currentStep === stepsLength - 1;
 
-    console.log(currentStep, stepsLength);
+    console.log("Current Vehicle", currentVehicle)
+
+   
     return <div className="flex justify-between w-full">
         {!isFirstStep && 
             <button 
@@ -21,7 +25,7 @@ export default function FormControllerButtons ({props}){
             </button>
         }
         <button 
-                disabled={!selectedVehicleId}
+                disabled={!currentVehicle}
                 className="default-btn ml-auto default-button:disabled"
                 onClick={(e)=>{
                     e.stopPropagation()

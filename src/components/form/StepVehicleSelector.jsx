@@ -8,8 +8,6 @@ export default function StepVehichleSelector({
   currentStep,
   goToNextStep,
   goToPrevStep,
-  selectedVehicleId,
-  setSelectedVehicleId
 }) {
   const { t } = useTranslation();
 
@@ -25,8 +23,8 @@ export default function StepVehichleSelector({
  
 
   return (
-    <div className="w-full h-full flex flex-col justify-between p-4">
-      <h2 className="text-text-default text-3xl text-center font-extrabold">
+    <div className="step-container">
+      <h2 className="step-container-title">
         {t("veichleSelector.title")}
       </h2>
 
@@ -45,13 +43,13 @@ export default function StepVehichleSelector({
         <div className="vehicle-card-container">
           {vehicles.map((v) => {
             return (
-              <VehicleCard key={v.id} vehicle={v} selectedVehicleId={selectedVehicleId} setSelectedVehicleId={setSelectedVehicleId}/>
+              <VehicleCard key={v.id} vehicle={v}/>
             );
           })}
         </div>
       </div>
       <div>
-          <FormControllerButtons props={{ stepsLength, currentStep, goToNextStep, goToPrevStep, selectedVehicleId }}/>
+          <FormControllerButtons props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}/>
       </div>
     </div>
   );
