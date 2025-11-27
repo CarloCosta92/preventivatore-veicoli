@@ -31,5 +31,13 @@
       "title": "3. Esporta e condividi",
       "description": "Genera un PDF professionale pronto per essere inviato. Perfetto per concessionari, rivenditori o privati che vogliono velocità e precisione."
     }
+  },
+
+  "form": {
+    "controlbutton": {
+      "back": "Indietro",
+      "continue": "Continua",
+      "send": "Invia"
+    }
   }
 }

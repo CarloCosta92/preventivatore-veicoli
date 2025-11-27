@@ -29,5 +29,12 @@
       "title": "3. Export and share",
       "description": "Generate a professional PDF ready to be sent. Perfect for dealerships, resellers or private sellers who want speed and accuracy."
     }
+  },
+  "form": {
+    "controlbutton": {
+      "back": "Back",
+      "continue": "Continue",
+      "send": "Send"
+    }
   }
 }
