@@ -45,6 +45,10 @@
 
 @layer utilities {
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Background */
   .bg-background-default {
     background-color: var(--color-bg-default);

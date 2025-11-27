@@ -37,6 +37,7 @@ export default function StepVehichleSelector({
                 flex items-start 
                 justify-center p-4 
                 overflow-y-auto 
+                scrollbar-hide
                 max-h-[calc(100vh-200px)] 
             "
       >
