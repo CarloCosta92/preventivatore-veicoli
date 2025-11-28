@@ -10,8 +10,8 @@ export default function StepVehicleRegistration({
   const { t } = useTranslation();
 
   return (
-    <label>
-      <h2>{t("stepYear.title")}</h2>
+    <label className="step-container">
+      <h2 className="step-container-title">{t("stepYear.title")}</h2>
 
       <FormControllerButtons
         props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}

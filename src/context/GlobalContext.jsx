@@ -2,7 +2,7 @@ import { useContext, createContext, useEffect, useState } from "react";
 import useTheme from "../hooks/useTheme";
 
 const GlobalContext = createContext();
-const API_URL = "http://localhost:8080/api/vehicle"
+const API_URL = "https://vehicle-backend-v1ur.onrender.com/api/vehicle"
 
 const GlobalProvider = ({ children }) => {
   const { ...themeData } = useTheme();
@@ -40,6 +40,8 @@ const GlobalProvider = ({ children }) => {
         getVehicles();
         
     }, []);
+
+    console.log(vehicles)
 
 
   return (

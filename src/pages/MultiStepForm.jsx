@@ -4,11 +4,15 @@ import StepFuelSystem from '../components/form/StepFuelSystem';
 import StepEngineSize from '../components/form/StepEngineSize';
 import StepOptionals from '../components/form/StepOptionals'
 import StepVehicleRegistration from '../components/form/StepVehicleRegistration'
+import { useGlobalContext } from '../context/GlobalContext';
+
 
 export default function MultiStepForm(){
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({}); 
   const [selectedVehicleId, setSelectedVehicleId] = useState(null);
+  const {currentVehicle} = useGlobalContext()
+ 
 
   const steps = [
     <StepVehichleSelector/>, 
@@ -18,16 +22,33 @@ export default function MultiStepForm(){
     <StepOptionals/> 
   ]
   const currentStepElement = steps[currentStep];
+  console.log("Veicolo Corrente", currentVehicle)
+    console.log("Step Corrente", currentStep)
+
 
   const goToNextStep = () => {
       if (currentStep < steps.length - 1) {
-        setCurrentStep(prev => prev + 1);
+        setCurrentStep(prev =>{
+          const isElectric = currentVehicle && currentVehicle.vehicleVariations.every(vV => vV.cc === 0);
+          const engineCondition = prev === 1 && isElectric
+          if(engineCondition){
+            return prev + 2
+          }
+          return prev +1
+        });
       }
     }
 
   const goToPrevStep = () => {
       if (currentStep > 0) {
-        setCurrentStep(prev => prev - 1);
+        setCurrentStep(prev => {
+          const isElectric = currentVehicle && currentVehicle.vehicleVariations.every(vV => vV.cc === 0);
+          const engineCondition = prev === 3 && isElectric
+          if(engineCondition){
+            return prev - 2
+          }
+          return prev - 1
+        });
       }
     }
 

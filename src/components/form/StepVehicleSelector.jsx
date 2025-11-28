@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useMemo, useState } from "react";
 
+
 export default function StepVehichleSelector({
   stepsLength,
   currentStep,
@@ -11,15 +12,23 @@ export default function StepVehichleSelector({
   goToPrevStep,
 }) {
   const { t } = useTranslation();
+  const {i18n} = useTranslation();
 
   const { error, vehicles, isLoading } = useGlobalContext();
   const [selectTypeOption, setSelectTypeOption] = useState("");
+  const vehicleTypes = [...new Set(vehicles.map((v) => {
+    if(i18n.language === "it"){
+      return v.vehicleTypeIt
+    }
+    return v.vehicleTypeEn
+  }))];
+
 
   const filteredVehicles = useMemo(() => {
     let currentVehicles = vehicles;
     if (selectTypeOption) {
       currentVehicles = vehicles.filter(
-        (v) => v.vehicleType === selectTypeOption
+        (v) => v.vehicleTypeIt === selectTypeOption || v.vehicleTypeEn === selectTypeOption
       );
     }
     return currentVehicles;
@@ -53,7 +62,7 @@ export default function StepVehichleSelector({
           id="selectVehicleType"
         >
           <option value="">{t("stepVehicleSelector.all")}</option>
-          {[...new Set(vehicles.map((v) => v.vehicleType))].map((vT, i) => (
+          {vehicleTypes.map((vT, i) => (
             <option key={i} value={vT}>
               {vT.toUpperCase()}
             </option>

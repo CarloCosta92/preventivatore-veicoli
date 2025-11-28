@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useGlobalContext } from "../../context/GlobalContext";
 
+
 export default function FormControllerButtons ({props}){
 
     const {currentVehicle} = useGlobalContext();
@@ -9,10 +10,9 @@ export default function FormControllerButtons ({props}){
     const isFirstStep = currentStep === 0;
     const isLastStep = currentStep === stepsLength - 1;
 
-    console.log("Current Vehicle", currentVehicle)
 
    
-    return <div className="flex justify-between w-full">
+    return <div className="flex justify-between w-full my-3">
         {!isFirstStep && 
             <button 
                 className="default-btn"

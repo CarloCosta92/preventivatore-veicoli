@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import FormControllerButtons from "./FormControllerButtons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import VehicleCard from "./VehicleCard";
+import { useEffect, useState, useRef } from "react"; 
 
 export default function StepEngineSize({
   stepsLength,
@@ -9,24 +10,50 @@ export default function StepEngineSize({
   goToNextStep,
   goToPrevStep,
 }) {
+  
   const { t } = useTranslation();
-  const { currentVehicle } = useGlobalContext();
+  const { currentVehicle, setCurrentVehicle } = useGlobalContext();
+  
+  // 2. Utilizza useRef per memorizzare l'array delle variazioni che ricevi in questo step.
+  //    Questo array è il risultato del filtraggio dello step precedente ed è la nostra base.
+  const initialVariationsRef = useRef(currentVehicle.vehicleVariations);
 
-  const engineSizes = currentVehicle.vehicleVariations.map((v) => v.cc);
+  // 3. Calcola le cilindrate uniche ESCLUSIVAMENTE dal Ref
+  const engineSizes = initialVariationsRef.current.map((v) => v.cc);
   const uniqueEngineSizes = [...new Set(engineSizes)].sort((a, b) => a - b);
+  
+  // Imposta il primo valore unico come default
+  const [selectEngineValue, setSelectEngineValue] = useState(uniqueEngineSizes[0]);
 
-  console.log(uniqueEngineSizes);
+  // NON usare console.log(uniqueEngineSizes); in produzione
+
+  // 4. Modifica l'useEffect per filtrare sempre l'array originale (dal Ref)
+  useEffect(()=>{
+
+    // Filtra l'array originale (stabile) e non quello nello stato (instabile)
+    const filteredVariations = initialVariationsRef.current.filter(
+      // Confronto come stringa per maggiore sicurezza, dato che il valore della select è una stringa
+      (v) => v.cc.toString() === selectEngineValue.toString() 
+    );
+
+    // Aggiorna lo stato globale con il risultato filtrato, preparando i dati per il prossimo step
+    setCurrentVehicle((prevVehicle) => ({
+      ...prevVehicle,
+      vehicleVariations: filteredVariations
+    }));
+    
+  }, [selectEngineValue, setCurrentVehicle]); // Aggiunto setCurrentVehicle alle dipendenze
 
   return (
-    // Il contenitore principale (assumo che step-container gestisca la larghezza massima)
+  
     <div className="step-container h-full flex flex-col justify-between">
-      {/* Contenuto principale del form step */}
+      {/* ... (Resto del JSX) ... */}
       <div className="grow flex flex-col justify-center items-center">
         <h2 className="step-container-title mb-12 text-3xl font-bold text-white">
           {t("stepEngine.title")}
         </h2>
 
-        <div className="max-w-4xl w-full mx-auto flex flex-col md:flex-row items-center justify-around gap-12 p-4">
+        <div className="max-w-2xl md:max-w-4xl w-full mx-auto flex flex-col md:flex-row items-center justify-around gap-12 p-2 md:p-4">
           <div className="w-full md:w-1/2 lg:w-2/5 flex justify-center">
             <VehicleCard vehicle={currentVehicle} />
           </div>
@@ -41,13 +68,15 @@ export default function StepEngineSize({
 
             <div className="relative">
               <select
+                onChange={(e)=>setSelectEngineValue(e.target.value)}
                 id="engine-select"
-                className="block w-full px-5 py-4 border-2 border-primary rounded-lg shadow-lg bg-bg-default text-text-default text-xl appearance-none cursor-pointer hover:bg-bg-alt hover:border-primary-hover focus:outline-none"
+                className="block w-full px-5 py-4 border-2 border-primary rounded-lg shadow-lg bg-bg-default text-text-default text-m md:text-xl appearance-none cursor-pointer hover:bg-bg-alt hover:border-primary-hover focus:outline-none"
               >
+                {/* Il mapping usa l'array stabile uniqueEngineSizes */}
                 {uniqueEngineSizes.map((size, i) => {
                   return (
                     <option key={i} value={size}>
-                      {size} CC
+                      {size === 0 ? "Elettrico" : `${size} cc` }
                     </option>
                   );
                 })}
