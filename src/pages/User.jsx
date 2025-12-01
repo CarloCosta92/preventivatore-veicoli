@@ -9,7 +9,7 @@ const User = () => {
   };
 
   return (
-    <div className="min-h-screen px-6 py-10">
+    <div className="min-h-[70vh] px-6 py-10">
       <div className="max-w-3xl mx-auto space-y-8">
         <div>
           <h1 className="text-4xl font-bold">User Settings</h1>
