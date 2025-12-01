@@ -27,7 +27,7 @@ const User = () => {
 
             <button
               onClick={toggleTheme}
-              className="relative inline-flex items-center h-9 w-16  rounded-full transition-all"
+              className="relative inline-flex items-center h-9 w-16 bg-gray-200 rounded-full transition-all"
             >
               <span
                 className={`absolute left-1 top-1 h-7 w-7 rounded-full  shadow transform transition-all flex items-center justify-center ${
