@@ -1,20 +1,18 @@
 import { useTranslation } from "react-i18next";
 import FormControllerButtons from "./FormControllerButtons";
 import { useGlobalContext } from "../../context/GlobalContext";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useMemo } from "react"; // Aggiunto useMemo, rimosso useRef
 import VehicleCard from "./VehicleCard";
 
 // Helper function per estrarre i valori di alimentazione unici
+// Non ha bisogno di essere modificata, è efficiente.
 const getUniqueFuelSystems = (variations, lang) => {
-  // Seleziona la chiave di traduzione corretta
   const key = lang === "it" ? "fuelSystemIt" : "fuelSystemEn";
   
-  // Mappa tutte le variazioni per estrarre solo i tipi di alimentazione
   const allFuelTypes = variations
     .map(vV => vV[key])
-    .filter(Boolean); // Rimuove valori nulli/undefined/vuoti
+    .filter(Boolean);
 
-  // Ritorna l'array di valori unici e ordinati
   return [...new Set(allFuelTypes)].sort();
 };
 
@@ -26,46 +24,79 @@ export default function StepFuelSystem({
   goToPrevStep,
 }) {
   const { t, i18n } = useTranslation();
-  const {currentVehicle, setCurrentVehicle} = useGlobalContext();
-  
-  // 1. Usa useRef per salvare l'array stabile delle variazioni ricevute
-  const initialVariationsRef = useRef(currentVehicle.vehicleVariations);
-  
-  // 2. Calcola l'array delle opzioni uniche dal Ref stabile
-  //    NOTA: Questo ricalcola solo se la lingua cambia (in quanto i18n.language è una dipendenza del componente)
-  const uniqueFuelSystems = getUniqueFuelSystems(initialVariationsRef.current, i18n.language);
+  const { currentVehicle, setCurrentVehicle } = useGlobalContext();
 
-  // 3. Inizializza lo stato con il primo valore unico disponibile
-  const [selectFuelSystem, setSelectFuelSystem] = useState(uniqueFuelSystems[0] || ''); // Aggiunto fallback ''
+  const previousStepKey = `step${currentStep - 1}`; 
+  const currentStepKey = `step${currentStep}`; 
 
-  // 4. L'useEffect ora filtra l'array stabile e aggiorna lo stato globale
+  // --- 1. Calcolo e Memorizzazione dell'Array Base (initialVariations) ---
+  // Usa la stessa logica di ereditarietà dello step EngineSize.
+  const initialVariations = useMemo(() => {
+      return (currentStep > 1 && currentVehicle.steps[previousStepKey])
+          ? currentVehicle.steps[previousStepKey]
+          : currentVehicle.vehicleVariations;
+  }, [currentStep, currentVehicle.steps, currentVehicle.vehicleVariations, previousStepKey]);
+
+  // --- 2. Calcolo e Memorizzazione delle Opzioni Uniche ---
+  // Calcolato solo quando initialVariations (la base) o la lingua cambiano.
+  const uniqueFuelSystems = useMemo(() => {
+      return getUniqueFuelSystems(initialVariations, i18n.language);
+  }, [initialVariations, i18n.language]);
+  
+  // --- 3. Inizializzazione e Sincronizzazione dello Stato Locale ---
+  
+  // Trova il valore salvato: cerca il campo fuelSystemIt/En dell'array filtrato salvato.
+  const langKey = i18n.language === "it" ? "fuelSystemIt" : "fuelSystemEn";
+  const savedValue = currentVehicle.steps?.[currentStepKey]?.[0]?.[langKey]; 
+
+  // Stato locale: Inizializzazione al primo render
+  const [selectFuelSystem, setSelectFuelSystem] = useState(() => {
+      if (savedValue) {
+          return savedValue;
+      }
+      return uniqueFuelSystems[0] || ''; 
+  });
+
+
+  // Sincronizzazione: Aggiorna lo stato locale quando si naviga o cambia la lingua.
+  useEffect(() => {
+    if (savedValue) {
+        setSelectFuelSystem(savedValue);
+    } else if (uniqueFuelSystems.length > 0) {
+        setSelectFuelSystem(uniqueFuelSystems[0]);
+    } else {
+        setSelectFuelSystem('');
+    }
+  }, [currentStep, savedValue, uniqueFuelSystems, i18n.language]);
+
+  
+  // --- 4. useEffect per Filtrare e Salvare lo Stato Globale (Nello Step) ---
+  
   useEffect(()=>{
-    if (!selectFuelSystem) return; // Non eseguire il filtro se non c'è nulla selezionato
+    if (!selectFuelSystem) return; 
 
-    // Definisce le chiavi per il filtro basato sulla lingua selezionata
+    // Definisce le chiavi di ricerca (devono corrispondere alla chiave usata per salvare il valore nella select)
     const itKey = 'fuelSystemIt';
     const enKey = 'fuelSystemEn';
-
-    // Filtra SEMPRE sull'array stabile (initialVariationsRef.current)
-    const filteredVariations = initialVariationsRef.current.filter(v => {
-        // Filtra se il valore selezionato corrisponde sia al campo IT che EN
-        // (necessario perché la selectValue è un valore tradotto)
+    
+    // Filtra sull'array di base (initialVariations)
+    const filteredVariations = initialVariations.filter(v => {
+        // La selectValue è un valore tradotto, quindi filtriamo sull'equivalente nella lingua corrente
         return v[itKey] === selectFuelSystem || v[enKey] === selectFuelSystem;
     });
 
-    // Aggiorna lo stato globale con il risultato filtrato
+    // ✅ CORREZIONE CHIAVE: Salva il filtro nell'oggetto steps, non in vehicleVariations!
     setCurrentVehicle((prevVehicle) => ({
       ...prevVehicle,
-      vehicleVariations: filteredVariations
+      steps: {
+        ...prevVehicle.steps, // Copia gli step esistenti
+        [currentStepKey]: filteredVariations // Salva il nuovo step filtrato
+      }
     }));
     
-  }, [selectFuelSystem, setCurrentVehicle]);
+  // Aggiunto initialVariations e currentStepKey alle dipendenze per stabilità
+  }, [selectFuelSystem, setCurrentVehicle, initialVariations, currentStepKey]);
 
-  // Gestione del ricaricamento del componente se la lingua cambia (per mostrare le opzioni corrette)
-  useEffect(() => {
-    // Quando la lingua cambia, aggiorna il valore selezionato per rispecchiare le nuove opzioni
-    setSelectFuelSystem(uniqueFuelSystems[0] || '');
-  }, [i18n.language]);
 
   return (
     <label className="step-container h-full flex flex-col justify-between"> 
@@ -81,7 +112,7 @@ export default function StepFuelSystem({
       
                 <div className="w-full md:w-1/2 lg:w-2/5">
                   <label
-                    htmlFor="fuel-select" // Modificato l'ID per coerenza
+                    htmlFor="fuel-select"
                     className="block text-xl font-semibold mb-3 text-text-default"
                   >
                     Alimentazione
@@ -89,14 +120,15 @@ export default function StepFuelSystem({
       
                   <div className="relative">
                     <select
+                      // ✅ Assicurati di impostare il valore corretto dallo stato locale
+                      value={selectFuelSystem} 
                       onChange={(e)=>setSelectFuelSystem(e.target.value)}
-                      id="fuel-select" // Modificato l'ID per coerenza
+                      id="fuel-select"
                       className="block w-full px-5 py-4 border-2 border-primary rounded-lg shadow-lg bg-bg-default text-text-default text-m md:text-xl appearance-none cursor-pointer hover:bg-bg-alt hover:border-primary-hover focus:outline-none"
                     >
-                      {/* 5. Mappa l'array delle opzioni uniche (uniqueFuelSystems) */}
                       {uniqueFuelSystems.map((fuelType, i) => {
                         return (
-                          // Il valore deve essere la stringa tradotta (quella mostrata)
+                          // Il valore deve essere la stringa tradotta
                           <option key={i} value={fuelType}>
                             {fuelType}
                           </option>

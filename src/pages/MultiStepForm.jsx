@@ -22,8 +22,6 @@ export default function MultiStepForm(){
     <StepOptionals/> 
   ]
   const currentStepElement = steps[currentStep];
-  console.log("Veicolo Corrente", currentVehicle)
-    console.log("Step Corrente", currentStep)
 
 
   const goToNextStep = () => {

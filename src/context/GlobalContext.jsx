@@ -41,7 +41,6 @@ const GlobalProvider = ({ children }) => {
         
     }, []);
 
-    console.log(vehicles)
 
 
   return (

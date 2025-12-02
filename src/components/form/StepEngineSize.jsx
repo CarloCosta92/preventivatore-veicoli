@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import FormControllerButtons from "./FormControllerButtons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import VehicleCard from "./VehicleCard";
-import { useEffect, useState, useRef } from "react"; 
+import { useEffect, useState, useMemo } from "react"; 
 
 export default function StepEngineSize({
   stepsLength,
@@ -12,42 +12,84 @@ export default function StepEngineSize({
 }) {
   
   const { t } = useTranslation();
-  const { currentVehicle, setCurrentVehicle } = useGlobalContext();
+  // Estrai solo ciò che serve per evitare dipendenze inutili (se possibile)
+  const { currentVehicle, setCurrentVehicle } = useGlobalContext(); 
   
-  // 2. Utilizza useRef per memorizzare l'array delle variazioni che ricevi in questo step.
-  //    Questo array è il risultato del filtraggio dello step precedente ed è la nostra base.
-  const initialVariationsRef = useRef(currentVehicle.vehicleVariations);
+  const previousStepKey = `step${currentStep - 1}`; 
+  const currentStepKey = `step${currentStep}`; 
 
-  // 3. Calcola le cilindrate uniche ESCLUSIVAMENTE dal Ref
-  const engineSizes = initialVariationsRef.current.map((v) => v.cc);
-  const uniqueEngineSizes = [...new Set(engineSizes)].sort((a, b) => a - b);
+  // --- 1. Calcolo e Memorizzazione dell'Array Base (initialVariations) ---
+  // L'array base deve cambiare solo se cambiano lo step o i dati globali.
+  const initialVariations = useMemo(() => {
+      // Se currentStep > 1, cerca i dati filtrati dallo step precedente (N-1).
+      // Altrimenti, usa l'array completo di base.
+      return (currentStep > 1 && currentVehicle.steps[previousStepKey])
+          ? currentVehicle.steps[previousStepKey]
+          : currentVehicle.vehicleVariations;
+  }, [currentStep, currentVehicle.steps, currentVehicle.vehicleVariations, previousStepKey]);
+
+  // --- 2. Calcolo e Memorizzazione delle Opzioni Uniche (uniqueEngineSizes) ---
+  // Calcolato solo quando initialVariations cambia.
+  const uniqueEngineSizes = useMemo(() => {
+      const engineSizes = initialVariations.map((v) => v.cc);
+      // Ritorna l'array di numeri unici ordinato
+      return [...new Set(engineSizes)].sort((a, b) => a - b);
+  }, [initialVariations]);
+    
   
-  // Imposta il primo valore unico come default
-  const [selectEngineValue, setSelectEngineValue] = useState(uniqueEngineSizes[0]);
+  // --- 3. Inizializzazione e Sincronizzazione dello Stato Locale ---
+  
+  // Valore salvato per lo step corrente
+  const savedValue = currentVehicle.steps?.[currentStepKey]?.[0]?.cc; 
 
-  // NON usare console.log(uniqueEngineSizes); in produzione
+  // Stato locale: inizializzazione eseguita solo al primo render
+  const [selectEngineValue, setSelectEngineValue] = useState(() => {
+      if (savedValue) {
+          return savedValue.toString();
+      }
+      return uniqueEngineSizes[0] ? uniqueEngineSizes[0].toString() : ''; 
+  });
 
-  // 4. Modifica l'useEffect per filtrare sempre l'array originale (dal Ref)
+
+  // Sincronizzazione: Aggiorna lo stato locale quando si naviga (currentStep cambia)
+  // o quando i dati di base cambiano, assicurando che la select sia coerente.
+  useEffect(() => {
+    if (savedValue) {
+        setSelectEngineValue(savedValue.toString());
+    } else if (uniqueEngineSizes.length > 0) {
+        setSelectEngineValue(uniqueEngineSizes[0].toString());
+    }
+  }, [currentStep, savedValue, uniqueEngineSizes]);
+
+
+  // --- 4. useEffect per Filtrare e Salvare lo Stato Globale ---
+  
   useEffect(()=>{
 
-    // Filtra l'array originale (stabile) e non quello nello stato (instabile)
-    const filteredVariations = initialVariationsRef.current.filter(
-      // Confronto come stringa per maggiore sicurezza, dato che il valore della select è una stringa
+    // Filtra l'array di base (initialVariations) in base alla selezione locale
+    const filteredVariations = initialVariations.filter(
       (v) => v.cc.toString() === selectEngineValue.toString() 
     );
 
-    // Aggiorna lo stato globale con il risultato filtrato, preparando i dati per il prossimo step
-    setCurrentVehicle((prevVehicle) => ({
-      ...prevVehicle,
-      vehicleVariations: filteredVariations
-    }));
+    // Aggiorna lo stato globale con la chiave dinamica corretta
+    setCurrentVehicle((prevVehicle) => {
+      return {
+        ...prevVehicle,
+        steps : {
+          // Copia gli step esistenti
+          ...prevVehicle.steps,
+          // Aggiunge/sovrascrive lo step corrente con le variazioni filtrate
+          [currentStepKey]: filteredVariations 
+        }
+    }});
     
-  }, [selectEngineValue, setCurrentVehicle]); // Aggiunto setCurrentVehicle alle dipendenze
+  // Dipendenze complete: Riesegui quando cambia la selezione, i dati base o lo step.
+  }, [selectEngineValue, setCurrentVehicle, initialVariations, currentStepKey, currentStep]); 
+
 
   return (
   
     <div className="step-container h-full flex flex-col justify-between">
-      {/* ... (Resto del JSX) ... */}
       <div className="grow flex flex-col justify-center items-center">
         <h2 className="step-container-title mb-12 text-3xl font-bold text-white">
           {t("stepEngine.title")}
@@ -68,14 +110,16 @@ export default function StepEngineSize({
 
             <div className="relative">
               <select
+                // Il valore della select è controllato dallo stato locale
+                value={selectEngineValue} 
                 onChange={(e)=>setSelectEngineValue(e.target.value)}
                 id="engine-select"
                 className="block w-full px-5 py-4 border-2 border-primary rounded-lg shadow-lg bg-bg-default text-text-default text-m md:text-xl appearance-none cursor-pointer hover:bg-bg-alt hover:border-primary-hover focus:outline-none"
               >
-                {/* Il mapping usa l'array stabile uniqueEngineSizes */}
+                {/* Mapping delle opzioni filtrate e uniche */}
                 {uniqueEngineSizes.map((size, i) => {
                   return (
-                    <option key={i} value={size}>
+                    <option key={i} value={size.toString()}>
                       {size === 0 ? "Elettrico" : `${size} cc` }
                     </option>
                   );
@@ -102,7 +146,7 @@ export default function StepEngineSize({
         </div>
       </div>
 
-      {/* I pulsanti FormControllerButtons restano in fondo */}
+      {/* I pulsanti FormControllerButtons */}
       <FormControllerButtons
         props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}
       />
