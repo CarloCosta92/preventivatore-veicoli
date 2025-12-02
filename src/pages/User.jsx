@@ -27,7 +27,7 @@ const User = () => {
 
             <button
               onClick={toggleTheme}
-              className="relative inline-flex items-center h-9 w-16  rounded-full transition-all"
+              className="relative inline-flex items-center h-9 w-16 bg-gray-200 rounded-full transition-all hover:cursor-pointer"
             >
               <span
                 className={`absolute left-1 top-1 h-7 w-7 rounded-full  shadow transform transition-all flex items-center justify-center ${
@@ -46,13 +46,13 @@ const User = () => {
           <div className="flex gap-4">
             <button
               onClick={setDarkTheme}
-              className="px-4 py-2 rounded-xl hover:bg-gray-500 transition shadow"
+              className="px-4 py-2 rounded-xl hover:bg-gray-500 transition shadow hover:cursor-pointer"
             >
               Imposta Dark
             </button>
             <button
               onClick={setLightTheme}
-              className="px-4 py-2  rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 transition shadow"
+              className="px-4 py-2  rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 transition shadow hover:cursor-pointer"
             >
               Imposta Light
             </button>
