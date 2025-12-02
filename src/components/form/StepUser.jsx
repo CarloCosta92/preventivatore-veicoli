@@ -57,13 +57,13 @@ export default function StepUser({
                 {t("userForm.title", "Inserisci i Dati per l'elaborazione del Preventivo")}
             </h2>
 
-            <form className="w-full max-w-lg p-4 md:p-6 bg-bg-default rounded-xl shadow-2xl">
+            <form className="w-full max-w-lg p-4 md:p-6 bg-bg-default rounded-xl shadow-md mb-3 shadow-bg-alt">
                 
                 {/* Campo Nome */}
                 <div className="mb-6">
                     <label 
                         htmlFor="name" 
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="block text-sm font-medium mb-2"
                     >
                         {t("userForm.nameLabel", "Nome")}
                     </label>
@@ -82,7 +82,7 @@ export default function StepUser({
                 <div className="mb-6">
                     <label 
                         htmlFor="surname" 
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="block text-sm font-medium mb-2"
                     >
                         {t("userForm.surnameLabel", "Cognome")}
                     </label>
@@ -101,7 +101,7 @@ export default function StepUser({
                 <div className="mb-6">
                     <label 
                         htmlFor="email" 
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="block text-sm font-medium mb-2"
                     >
                         {t("userForm.emailLabel", "Indirizzo Email")}
                     </label>

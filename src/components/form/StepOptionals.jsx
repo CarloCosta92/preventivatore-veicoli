@@ -108,7 +108,7 @@ export default function StepOptionals({
           return (
             <label
               key={optional.id}
-              className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:shadow-sm transition justify-between"
+              className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:shadow-sm transition justify-between shadow-md shadow-bg-alt"
             >
               <div>
                 <input

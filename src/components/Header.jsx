@@ -9,7 +9,7 @@ const Header = () => {
   const { t } = useTranslation();
   return (
     <>
-      <header className="bg-gray-900 text-white p-5 flex justify-between">
+      <header className="bg-[#121314] text-white p-5 flex justify-between">
         <div>
           <h2 className="font-extrabold">
             <NavLink to={R_HOME}>{t("header.title")}</NavLink>
