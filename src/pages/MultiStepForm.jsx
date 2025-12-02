@@ -4,6 +4,7 @@ import StepFuelSystem from '../components/form/StepFuelSystem';
 import StepEngineSize from '../components/form/StepEngineSize';
 import StepOptionals from '../components/form/StepOptionals'
 import StepVehicleRegistration from '../components/form/StepVehicleRegistration'
+import StepUser from '../components/form/StepUser';
 import { useGlobalContext } from '../context/GlobalContext';
 
 
@@ -19,7 +20,8 @@ export default function MultiStepForm(){
     <StepEngineSize/>,
     <StepFuelSystem/>,
     <StepVehicleRegistration/>,
-    <StepOptionals/> 
+    <StepOptionals/>,
+    <StepUser/>
   ]
   const currentStepElement = steps[currentStep];
 
