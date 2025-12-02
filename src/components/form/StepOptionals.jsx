@@ -9,122 +9,127 @@ export default function StepOptionals({
   goToNextStep,
   goToPrevStep,
 }) {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
+  const { currentVehicle, setCurrentVehicle } = useGlobalContext();
+  const currentVehicleType = currentVehicle.vehicleTypeEn;
 
-    const { t, i18n } = useTranslation();
-    const currentLang = i18n.language;
-    const {currentVehicle, setCurrentVehicle} = useGlobalContext();
-    const currentVehicleType = currentVehicle.vehicleTypeIt;
+  const currentStepKey = `step${currentStep}`;
+  const prevStepKey = `step${currentStep - 1}`;
 
-    const currentStepKey = `step${currentStep}`;
-    const prevStepKey = `step${currentStep - 1}`;
+  const [allOptionals, setAllOptionals] = useState([]);
 
+  const [selectedOptionals, setSelectedOptionals] = useState([]);
 
-    const [allOptionals, setAllOptionals] = useState([]); 
-    
-    const [selectedOptionals, setSelectedOptionals] = useState([]);
-    
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-    const BASE_URL = import.meta.env.VITE_API_BASE_URL
-    const OPTIONALS_URL = useMemo(() => `${BASE_URL}optionals`, [BASE_URL]);
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const OPTIONALS_URL = useMemo(() => `${BASE_URL}optionals`, [BASE_URL]);
 
+  const getOptionals = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(OPTIONALS_URL);
 
-
-    const getOptionals = async()=>{
-      try {
-        setIsLoading(true);
-        const response = await fetch(OPTIONALS_URL);
-
-        if(response.ok){
-            const data = await response.json();
-            setAllOptionals(data); 
-        }else {
-          throw new Error(`Errore nella chiamata HTTP con status: ${response.status}`);
-        }
-      } catch (error) {
-        setError(true);
-        console.error(error);
-      }finally {
-        setIsLoading(false);
+      if (response.ok) {
+        const data = await response.json();
+        setAllOptionals(data);
+      } else {
+        throw new Error(
+          `Errore nella chiamata HTTP con status: ${response.status}`
+        );
       }
+    } catch (error) {
+      setError(true);
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
+  };
 
-    useEffect(()=>{
-      getOptionals();
-    }, [OPTIONALS_URL])
+  useEffect(() => {
+    getOptionals();
+  }, [OPTIONALS_URL]);
 
-    const filteredOptionals = useMemo(() => {
-        if (allOptionals.length === 0) return [];
+  const filteredOptionals = useMemo(() => {
+    if (allOptionals.length === 0) return [];
 
-        return allOptionals.filter(o => o.vehicleTypeEn === currentVehicleType);
-    }, [allOptionals, currentVehicleType]);
+    return allOptionals.filter((o) => o.vehicleTypeEn === currentVehicleType);
+  }, [allOptionals, currentVehicleType]);
 
+  useEffect(() => {
+    setCurrentVehicle((prevVehicle) => ({
+      ...prevVehicle,
+      steps: {
+        ...prevVehicle.steps,
+        [currentStepKey]: {
+          ...prevVehicle.steps[prevStepKey],
+          optionals: selectedOptionals,
+        },
+      },
+    }));
+  }, [selectedOptionals, setCurrentVehicle, currentStepKey]);
 
-    useEffect(() => {
-        setCurrentVehicle((prevVehicle) => ({
-            ...prevVehicle,
-            steps: {
-                ...prevVehicle.steps,
-                [currentStepKey]: {
-                  ...prevVehicle.steps[prevStepKey],
-                  optionals: selectedOptionals
-            },
-                }
-        }));
-    }, [selectedOptionals, setCurrentVehicle, currentStepKey]);
+  const toggleOptional = (optional) => {
+    setSelectedOptionals((prev) => {
+      const isSelected = prev.some((item) => item.id === optional.id);
 
+      if (isSelected) {
+        return prev.filter((item) => item.id !== optional.id);
+      } else {
+        return [...prev, optional];
+      }
+    });
+  };
 
-    const toggleOptional = (optional) => {
-        setSelectedOptionals(prev => {
+  console.log("Optioinals...", allOptionals);
+  console.log("FilteredOptionals...", filteredOptionals);
+  console.log("Veicolo Corrente", currentVehicle);
 
-            const isSelected = prev.some(item => item.id === optional.id); 
+  if (isLoading) {
+    return <div>Caricamento degli Optionals in corso</div>;
+  }
 
-            if (isSelected) {
-                return prev.filter(item => item.id !== optional.id);
-            } else {
+  if (error) {
+    return <div>Nessun Optional Trovato</div>;
+  }
 
-                return [...prev, optional]; 
-            }
-        });
-    };
+  return (
+    <div className="step-container space-y-6">
+      <h2 className="text-2xl font-semibold">{t("stepOptional.title")}</h2>
 
-    console.log("Optioinals...", allOptionals)
-    console.log("FilteredOptionals...", filteredOptionals)
-    console.log("Veicolo Corrente", currentVehicle)
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {filteredOptionals.map((optional) => {
+          const isChecked = selectedOptionals.some(
+            (item) => item.id === optional.id
+          );
 
-
-    if(isLoading){
-      return <div>Caricamento degli Optionals in corso</div>
-    }
-
-    if(error){
-      return <div>Nessun Optional Trovato</div>
-    }
-
-    return (
-      <div className="step-container">
-        <h2>{t("stepOptional.title")}</h2>
-
-        <div>
-          {/* Mappa le opzioni filtrate e gestisce lo stato di selezione */}
-          {filteredOptionals.map(optional => (
-              <div key={optional.id}>
-                  <label>
-                      <input
-                          type="checkbox"
-                          checked={selectedOptionals.some(item => item.id === optional.id)}
-                          onChange={() => toggleOptional(optional)}
-                      />
-                      {currentLang === "it" ? optional.nameEn : optional.nameIt}
-                  </label>
+          return (
+            <label
+              key={optional.id}
+              className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:shadow-sm transition justify-between"
+            >
+              <div>
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={() => toggleOptional(optional)}
+                  className="w-4 mr-2 rounded border focus:ring "
+                />
+                <span className="font-medium">
+                  {currentLang === "it" ? optional.nameEn : optional.nameIt}
+                </span>
               </div>
-          ))}
-        </div>
-
-        <FormControllerButtons
-          props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}
-        />
+              <span>€{optional.price.toFixed(2)}</span>
+            </label>
+          );
+        })}
       </div>
-    );
+
+      <FormControllerButtons
+        props={{ stepsLength, currentStep, goToNextStep, goToPrevStep }}
+      />
+    </div>
+  );
 }
