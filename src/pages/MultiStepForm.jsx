@@ -10,7 +10,9 @@ import { useGlobalContext } from '../context/GlobalContext';
 
 export default function MultiStepForm(){
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({}); 
+  const [formData, setFormData] = useState({});
+  const [isResponseOk, setIsResponseOk] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedVehicleId, setSelectedVehicleId] = useState(null);
   const {currentVehicle} = useGlobalContext()
  
@@ -61,7 +63,8 @@ export default function MultiStepForm(){
     goToNextStep: goToNextStep,
     goToPrevStep: goToPrevStep,
     selectedVehicleId: selectedVehicleId,
-    setSelectedVehicleId: setSelectedVehicleId
+    setSelectedVehicleId: setSelectedVehicleId,
+    setIsResponseOk: setIsResponseOk
   })
 
   return (

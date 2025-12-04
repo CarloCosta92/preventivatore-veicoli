@@ -6,10 +6,10 @@ export default function FormControllerButtons ({props}){
 
     const {currentVehicle} = useGlobalContext();
     const { t } = useTranslation();
-    const {stepsLength, currentStep, goToNextStep, goToPrevStep, getSubmissionData} = props;
+    const {stepsLength, currentStep, goToNextStep, goToPrevStep, getSubmissionData, setIsResponseOk,  setIsModalVisible} = props;
     const isFirstStep = currentStep === 0;
     const isLastStep = currentStep === stepsLength - 1;
-    const baseUrl = import.meta.env.VITE_API_BASE_URL
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
     const handleNextClick = async(e)=>{
         e.stopPropagation()
@@ -27,9 +27,12 @@ export default function FormControllerButtons ({props}){
                 if(!response.ok){
                     throw new Error(`Errore nell'invio dei Dati per il Preventivo, STATUS: ${response.status}`)
                 }
+                setIsResponseOk(true);
                 console.log(response);
             } catch (error) {
                 console.error(error);
+            }finally {
+                setIsModalVisible(true);
             }
         } else {
             goToNextStep();

@@ -8,6 +8,8 @@ export default function StepUser({
   currentStep,
   goToNextStep,
   goToPrevStep,
+  setIsResponseOk,
+  setIsModalVisible
 }) {
     const { t } = useTranslation();
     const { currentVehicle, setCurrentVehicle } = useGlobalContext();
@@ -122,7 +124,9 @@ export default function StepUser({
               currentStep, 
               goToNextStep, 
               goToPrevStep,
-              getSubmissionData: prepareDataForSubmission 
+              getSubmissionData: prepareDataForSubmission,
+              setIsResponseOk,
+              setIsModalVisible
           }}
         />
       </div>
