@@ -27,7 +27,7 @@
   --primary-hover: #10b981;
 } */
 
-/* :root {
+:root {
   --bg-default: #ffffff;
   --bg-alt: #faf6f0;
 
@@ -36,10 +36,10 @@
 
   --primary: #e0a34b;
   --primary-hover: #c48732;
-} */
+}
 
 /* DARK MODE */
-/* .dark {
+.dark {
   --bg-default: #141414;
   --bg-alt: #1f1f1f;
 
@@ -48,10 +48,10 @@
 
   --primary: #f1b761;
   --primary-hover: #d39b4b;
-} */
+}
 
 /* LIGHT MODE */
-:root {
+/* :root {
   --bg-default: #ffffff;
   --bg-alt: #f2f6fd;
 
@@ -60,10 +60,10 @@
 
   --primary: #3a7afe;
   --primary-hover: #2e63d1;
-}
+} */
 
 /* DARK MODE */
-.dark {
+/* .dark {
   --bg-default: #0f1115;
   --bg-alt: #1a1d23;
 
@@ -72,7 +72,7 @@
 
   --primary: #5c8dff;
   --primary-hover: #3a6eea;
-}
+} */
 
 
 /* DESIGN TOKENS  */

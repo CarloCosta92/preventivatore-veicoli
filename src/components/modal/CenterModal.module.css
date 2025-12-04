@@ -1,42 +1,58 @@
+/* BACKDROP — ora coerente con la palette */
 .backdrop {
     position: fixed;
     inset: 0;
-    background: var(--bg-default);
+    background: color-mix(in srgb, var(--bg-alt) 35%, transparent);
     z-index: 2000;
 }
 
+/* MODAL */
 .modal {
     position: fixed;
     top: 5.5%;
     left: 50%;
     transform: translateX(-50%) !important;
+
     background: var(--bg-default);
-    box-shadow: 5px 5px 8px rgba(var(--bg-alt), 0.35);
+
+    border: 5px solid color-mix(in srgb, var(--primary) 20%, transparent);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--primary) 15%, transparent);
+
     z-index: 2000;
     width: 90%;
     max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.5rem;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.25s ease-in-out;
 }
 
+/* CLOSE BUTTON */
 .closeButton {
     position: absolute;
     top: 0.75rem;
     right: 1rem;
+
     font-size: 1.5rem;
     background: none;
     border: none;
     cursor: pointer;
-    color: #888;
+
+    color: var(--text-muted);
+    transition: color 0.2s ease;
 }
 
+.closeButton:hover {
+    color: var(--primary);
+}
+
+/* CONTENT */
 .content {
     margin-top: 2rem;
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .modal {
         top: 5.5%;
