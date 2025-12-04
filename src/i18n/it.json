@@ -45,7 +45,8 @@
       "title":"Scegli la cilindrata"
     },
     "stepFuel":{
-      "title":"Scegli l'alimentazione"
+      "title":"Scegli l'alimentazione",
+      "description":"Alimentazione"
     },
     "stepOptional":{
       "title":"Scegli gli optional"
@@ -61,6 +62,15 @@
     "all":"TUTTI",
     "error1":"Nessun Veicolo trovato",
     "error2":"Caricamento in Corso"
+  },
+  "userSettings":{
+    "title":"Impostazioni utente",
+    "description":"Gestisci preferenze e personalizzazioni dell'account",
+    "themeTitle":"Tema dell’interfaccia",
+    "themeDescription":"Scegli come visualizzare la dashboard.",
+    "dark":"Scuro",
+    "light":"chiaro"
+
   }
 
 }

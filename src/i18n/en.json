@@ -41,9 +41,10 @@
     "stepEngine":{
       "title":"Choose engine capacity"
     },
-    "stepFuel":{
-      "title":"Choose fuel type"
-    },
+    "stepFuel": {
+  "title": "Choose the fuel type",
+  "description": "Fuel type"
+},
     "stepOptional":{
       "title":"Choose optionals"
     },
@@ -58,6 +59,15 @@
       "all":"ALL",
       "error1":"No vehicle founded",
       "error2":"Loading"
-  }
+  },
+  "userSettings": {
+  "title": "User Settings",
+  "description": "Manage account preferences and customizations",
+  "themeTitle": "Interface Theme",
+  "themeDescription": "Choose how to display the dashboard.",
+  "dark": "Dark",
+  "light": "Light"
+}
+
   
 }

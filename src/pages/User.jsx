@@ -1,7 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { useGlobalContext } from "../context/GlobalContext";
 import { Moon, Sun } from "lucide-react";
 
 const User = () => {
+  const { t } = useTranslation();
   const { theme, setDarkTheme, setLightTheme } = useGlobalContext();
 
   const toggleTheme = () => {
@@ -12,17 +14,17 @@ const User = () => {
     <div className="min-h-[70vh] px-6 py-10">
       <div className="max-w-3xl mx-auto space-y-8">
         <div>
-          <h1 className="text-4xl font-bold">User Settings</h1>
-          <p className="mt-1">
-            Gestisci preferenze e personalizzazioni dell’account.
-          </p>
+          <h1 className="text-4xl font-bold">{t("userSettings.title")}</h1>
+          <p className="mt-1">{t("userSettings.description")}</p>
         </div>
 
         <div className="shadow rounded-2xl p-6 space-y-6 transition">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-lg font-semibold">Tema dell’interfaccia</h2>
-              <p className="text-sm ">Scegli come visualizzare la dashboard.</p>
+              <h2 className="text-lg font-semibold">
+                {t("userSettings.themeTitle")}
+              </h2>
+              <p className="text-sm "> {t("userSettings.themeDescription")}</p>
             </div>
 
             <button
@@ -48,21 +50,14 @@ const User = () => {
               onClick={setDarkTheme}
               className="px-4 py-2 rounded-xl hover:bg-gray-500 transition shadow hover:cursor-pointer"
             >
-              Imposta Dark
+              {t("userSettings.dark")}
             </button>
             <button
               onClick={setLightTheme}
               className="px-4 py-2  rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 transition shadow hover:cursor-pointer"
             >
-              Imposta Light
+              {t("userSettings.light")}
             </button>
-          </div>
-
-          <div className="pt-4 border-t">
-            <p className="text-sm">
-              Tema attuale:{" "}
-              <span className="font-semibold capitalize">{theme}</span>
-            </p>
           </div>
         </div>
       </div>
