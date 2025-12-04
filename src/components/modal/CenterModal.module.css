@@ -1,0 +1,61 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-default);
+    z-index: 2000;
+}
+
+.modal {
+    position: fixed;
+    top: 5.5%;
+    left: 50%;
+    transform: translateX(-50%) !important;
+    background: var(--bg-default);
+    box-shadow: 5px 5px 8px rgba(var(--bg-alt), 0.35);
+    z-index: 2000;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+}
+
+.content {
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        top: 5.5%;
+        transform: none;
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+
+    .closeButton {
+        top: 0.5rem;
+        right: 0.75rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .modal {
+        width: 95%;
+        padding: 0.75rem;
+    }
+}
