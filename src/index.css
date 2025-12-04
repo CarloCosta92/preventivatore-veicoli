@@ -2,22 +2,21 @@
 
 
 /* LIGHT MODE  */
-:root {
-  /* Background */
+/* :root {
+
   --bg-default: #ffffff;
   --bg-alt: #f3f4f6;
 
-  /* Text */
+
   --text-default: #1f2937;
   --text-muted: #6b7280;
 
-  /* Primary */
   --primary: #10b981;
   --primary-hover: #059669;
-}
+} */
 
 /* DARK MODE  */
-.dark {
+/* .dark {
   --bg-default: #1b1d1f;
   --bg-alt: #374151;
 
@@ -26,7 +25,55 @@
 
   --primary: #34d399;
   --primary-hover: #10b981;
+} */
+
+/* :root {
+  --bg-default: #ffffff;
+  --bg-alt: #faf6f0;
+
+  --text-default: #1a1a1a;
+  --text-muted: #6d6d6d;
+
+  --primary: #e0a34b;
+  --primary-hover: #c48732;
+} */
+
+/* DARK MODE */
+/* .dark {
+  --bg-default: #141414;
+  --bg-alt: #1f1f1f;
+
+  --text-default: #f7f7f7;
+  --text-muted: #9c9c9c;
+
+  --primary: #f1b761;
+  --primary-hover: #d39b4b;
+} */
+
+/* LIGHT MODE */
+:root {
+  --bg-default: #ffffff;
+  --bg-alt: #f2f6fd;
+
+  --text-default: #1e2330;
+  --text-muted: #627085;
+
+  --primary: #3a7afe;
+  --primary-hover: #2e63d1;
 }
+
+/* DARK MODE */
+.dark {
+  --bg-default: #0f1115;
+  --bg-alt: #1a1d23;
+
+  --text-default: #e5e9f0;
+  --text-muted: #8b93a6;
+
+  --primary: #5c8dff;
+  --primary-hover: #3a6eea;
+}
+
 
 /* DESIGN TOKENS  */
 @theme {
