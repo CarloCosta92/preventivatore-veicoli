@@ -2,7 +2,7 @@ import { House, UserCog } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { R_HOME, R_USER } from "../data/Path";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "./LanguageSwitcher";
+
 
 
 const Header = () => {
@@ -17,9 +17,6 @@ const Header = () => {
         </div>
         <nav>
           <ul className="flex gap-5 items-center">
-            <li>
-              <LanguageSwitcher/>
-            </li>
             <li>
               <NavLink to={R_HOME} className="transition duration-300 hover:scale-125 transform block">
                 <House />

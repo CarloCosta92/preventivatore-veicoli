@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useGlobalContext } from "../context/GlobalContext";
 import { Moon, Sun } from "lucide-react";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const User = () => {
   const { t } = useTranslation();
@@ -60,6 +61,7 @@ const User = () => {
             </button>
           </div>
         </div>
+        <LanguageSwitcher/>
       </div>
     </div>
   );
