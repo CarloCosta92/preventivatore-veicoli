@@ -1,69 +1,45 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 
-const LanguageSwitcher = () => {
-  // Ottiene l'istanza i18n per cambiare lingua e la lingua corrente
-  const { i18n } = useTranslation();
-  
-  // Ottiene la lingua attualmente impostata
-  const currentLanguage = i18n.language; 
+// Assicurati che i percorsi corrispondano alla tua struttura delle cartelle
+import itaFlag from "../assets/ita.svg";
+import ukFlag from "../assets/uk.svg";
 
-  // Funzione che gestisce il cambio lingua
-  // L'evento 'e' è l'evento di cambio del tag <select>
-  const handleLanguageChange = (e) => {
-    const newLang = e.target.value;
-    i18n.changeLanguage(newLang);
-    // Salva la scelta in localStorage (ottima pratica!)
-    localStorage.setItem("language", newLang);
+const LanguageSwitcher = () => {
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const handleLanguageChange = (langCode) => {
+    i18n.changeLanguage(langCode);
+    localStorage.setItem("language", langCode);
   };
 
-  // Definisci le opzioni disponibili in un array per chiarezza
   const languages = [
-    { code: "it", label: "🇮🇹" },
-    { code: "en", label: "🇬🇧" },
-    // Puoi aggiungere altre lingue qui, es. { code: "es", label: "Español 🇪🇸" }
+    { code: "it", label: "Italiano", flag: itaFlag },
+    { code: "en", label: "English", flag: ukFlag },
   ];
 
-
-  const THEMELANGUAGE = <div className="shadow rounded-2xl p-6 space-y-6 transition">
-          <div className="flex justify-between items-center">
-            <div>
-              <h2 className="text-lg font-semibold">
-                Lingua dell'Interfaccia
-              </h2>
-            </div>
-
-            <button
-              onClick={toggleTheme}
-              className="relative inline-flex items-center h-9 w-16 bg-gray-200 rounded-full transition-all hover:cursor-pointer"
-            >
-              <span
-                className={`absolute left-1 top-1 h-7 w-7 rounded-full  shadow transform transition-all flex items-center justify-center ${
-                  theme === "dark" ? "translate-x-7" : ""
-                }`}
-              >
-              </span>
-            </button>
-          </div>
-        </div>
   return (
-    <div className="">
-      <label htmlFor="language-select" className="sr-only">Scegli la lingua</label>
-      <select
-        id="language-select"
-        // Imposta la lingua selezionata corrente
-        value={currentLanguage}
-        // Chiama la funzione di cambio quando il valore cambia
-        onChange={handleLanguageChange}
-        // Tailwind classes per lo stile del menu a discesa
-        className=" bg-gray-900 px-2 py-1 border rounded-md transition duration-300 hover:scale-110 transform block focus:outline-none cursor-pointer appearance-none"
-      >
-        {languages.map((lang) => (
-          <option key={lang.code} value={lang.code}>
-            {lang.label}
-          </option>
-        ))}
-      </select>
+    <div className="shadow rounded-2xl p-6 space-y-6 transition bg-alt">
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-lg font-semibold">Lingua dell'Interfaccia</h2>
+        </div>
+        <div className="flex gap-3">
+          {languages.map((lang) => (
+            <button
+              key={lang.code}
+              onClick={() => handleLanguageChange(lang.code)}
+              className={`relative inline-flex items-center justify-center h-10 w-16 rounded-full transition-all cursor-pointer border-2 ${
+                currentLanguage === lang.code
+                  ? "border-bg-alt opacity-100"
+                  : "border-transparent opacity-40 hover:opacity-100"
+              }`}
+            >
+              <img src={lang.flag} alt={lang.label} className="h-6 w-6" />
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
