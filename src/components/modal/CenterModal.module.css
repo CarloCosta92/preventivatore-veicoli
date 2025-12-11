@@ -1,8 +1,8 @@
-/* BACKDROP — ora coerente con la palette */
+/* BACKDROP */
 .backdrop {
     position: fixed;
     inset: 0;
-    background: color-mix(in srgb, var(--bg-alt) 35%, transparent);
+    background: transparent;
     z-index: 2000;
 }
 
@@ -12,13 +12,11 @@
     top: 5.5%;
     left: 50%;
     transform: translateX(-50%) !important;
-
-    background: var(--bg-default);
-
-    border: 5px solid color-mix(in srgb, var(--primary) 20%, transparent);
-    box-shadow: 0 8px 24px color-mix(in srgb, var(--primary) 15%, transparent);
-
-    z-index: 2000;
+    background: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(224, 163, 75, 0.6);
+    box-shadow: 0 8px 24px rgba(224, 163, 75, 0.3);
+    z-index: 2001;
     width: 90%;
     max-width: 600px;
     max-height: 90vh;
@@ -33,45 +31,32 @@
     position: absolute;
     top: 0.75rem;
     right: 1rem;
-
     font-size: 1.5rem;
     background: none;
     border: none;
     cursor: pointer;
-
-    color: var(--text-muted);
+    color: #9c9c9c;
+    /* text-muted in dark mode */
     transition: color 0.2s ease;
 }
 
 .closeButton:hover {
-    color: var(--primary);
+    color: #f1b761;
+    /* primary in dark mode */
 }
 
 /* CONTENT */
 .content {
     margin-top: 2rem;
+    color: #f7f7f7;
+    /* Testo chiaro per leggibilità */
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .modal {
-        top: 5.5%;
-        transform: none;
-        width: 100%;
-        max-height: 100vh;
-        border-radius: 1rem;
-        padding: 1rem;
-    }
-
-    .closeButton {
-        top: 0.5rem;
-        right: 0.75rem;
-    }
+/* Forza il testo ad essere leggibile */
+.content h3 {
+    color: #f7f7f7 !important;
 }
 
-@media (max-width: 425px) {
-    .modal {
-        width: 95%;
-        padding: 0.75rem;
-    }
+.content a {
+    color: white !important;
 }

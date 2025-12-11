@@ -132,7 +132,27 @@ html {
 html.dark {
   color-scheme: dark;
 }
-
+header,footer,main{
+  z-index: 2;
+}
+.sfondo {
+  position: fixed;
+  /* Cambia da relative a fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  /* Cambia da 5 a -1 per metterlo dietro */
+  background:
+      linear-gradient(color-mix(in srgb, var(--bg-default) 20%, transparent),
+        color-mix(in srgb, var(--bg-default) 50%, transparent)),
+      url("/supercar-sulla-strada-di-montagna.jpg");
+  /* Rimuovi ./src/ */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 /* PERSONALIZED CLASSES FOR COMPONENTS W/TAILWIND  */
 
@@ -158,8 +178,9 @@ html.dark {
     shadow-xl 
     shadow-primary/20
     transition-shadow
-    bg-bg-default
     hover:shadow-2xl
+    relative
+    z-10
 }
 
 .card-absolute-title {
