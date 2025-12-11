@@ -16,7 +16,7 @@ export default function StepUser({
     const [errors, setErrors] = useState({});
 
     const currentStepKey = `step${currentStep}`;
-    const prevStepKey = `step${currentStep - 1}`;
+    const prevOptionalsStepKey = `step${currentStep - 2}`;
     const savedUserData = currentVehicle.steps?.[currentStepKey]; 
 
 
@@ -56,16 +56,21 @@ export default function StepUser({
             return null; 
         }
 
-        const updatedVehicleData = {
-            currentVehicle : {
-                ...currentVehicle,
-                vehicleVariations: currentVehicle.steps[prevStepKey],
-            },
-            user: userData
-        };
-        
+        const formDataFormatted = {
+        "vehicleDTOToQuoted": [
+            {
+            "id": currentVehicle.id
+            }
+        ],
+        "vehicleVariationId": currentVehicle.steps[prevOptionalsStepKey][0].id,
+        "optionalDTOtoQuoted": currentVehicle.optionals.map(o=>({"id": o.id}))
+        }
 
-        return updatedVehicleData;
+        console.log(currentVehicle.steps, "STEPS")
+        console.log(currentVehicle.steps[prevOptionalsStepKey], "ULTIMO STEP");
+        console.log(currentVehicle.steps[prevOptionalsStepKey][0], "Prima Variazione dell'Ultimo Step")
+
+        return formDataFormatted;
     };
 
     return (

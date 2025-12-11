@@ -8,7 +8,7 @@ import StepUser from "../components/form/StepUser";
 import { useGlobalContext } from "../context/GlobalContext";
 import CenterModal from "../components/modal/CenterModal";
 import { NavLink } from "react-router-dom";
-import { R_HOME, R_USER } from "../data/Path";
+import { R_HOME, R_QUOTES, R_USER } from "../data/Path";
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -84,7 +84,7 @@ export default function MultiStepForm() {
               </h3>
               <div className="flex flex-col md:flex-row justify-center gap-4">
                 <NavLink
-                  to={R_USER}
+                  to={R_QUOTES}
                   className="bg-primary hover:bg-primary-hover  font-semibold px-6 py-2 rounded-lg transition"
                 >
                   Visualizza i tuoi preventivi

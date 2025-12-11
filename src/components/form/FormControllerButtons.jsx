@@ -20,9 +20,12 @@ export default function FormControllerButtons ({props}){
             }
             console.log(formData);
             try {
-                const response = await fetch(`${baseUrl}/quotation`, {
+               const response = await fetch(`${baseUrl}quotation`, {
                     method: 'POST',
-                    body: formData 
+                    headers: {
+                        "Content-Type": "application/json" // Corretto: dentro headers e con lo slash
+                    },
+                    body: JSON.stringify(formData) // Corretto: convertito in stringa JSON
                 });
                 if(!response.ok){
                     throw new Error(`Errore nell'invio dei Dati per il Preventivo, STATUS: ${response.status}`)
@@ -33,6 +36,7 @@ export default function FormControllerButtons ({props}){
                 console.error(error);
             }finally {
                 setIsModalVisible(true);
+                console.log(formData);
             }
         } else {
             goToNextStep();

@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import FormControllerButtons from "./FormControllerButtons";
 import { useState, useEffect, useMemo } from "react";
 import { useGlobalContext } from "../../context/GlobalContext";
+import Loader from "../Loader";
 
 export default function StepOptionals({
   stepsLength,
@@ -61,14 +62,8 @@ export default function StepOptionals({
   useEffect(() => {
     setCurrentVehicle((prevVehicle) => ({
       ...prevVehicle,
-      steps: {
-        ...prevVehicle.steps,
-        [currentStepKey]: {
-          ...prevVehicle.steps[prevStepKey],
-          optionals: selectedOptionals,
-        },
-      },
-    }));
+      optionals: selectedOptionals
+      }));
   }, [selectedOptionals, setCurrentVehicle, currentStepKey]);
 
   const toggleOptional = (optional) => {
@@ -88,7 +83,7 @@ export default function StepOptionals({
   console.log("Veicolo Corrente", currentVehicle);
 
   if (isLoading) {
-    return <div>Caricamento degli Optionals in corso</div>;
+    return <Loader/>
   }
 
   if (error) {

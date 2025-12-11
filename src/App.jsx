@@ -4,8 +4,9 @@ import Home from "./pages/Home";
 import MultiStepForm from "./pages/MultiStepForm";
 import User from "./pages/User";
 import DefaultLayout from "./layout/DefaultLayout";
-import { R_HOME, R_QUOTATION, R_USER } from "./data/Path";
+import { R_HOME, R_QUOTATION, R_QUOTES, R_USER } from "./data/Path";
 import { GlobalProvider } from "./context/GlobalContext";
+import Quotes from "./pages/Quotes";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path={R_QUOTATION} element={<MultiStepForm />} />
             <Route path={R_USER} element={<User />} />
+             <Route path={R_QUOTES} element={<Quotes/>} />
           </Route>
         </Routes>
       </BrowserRouter>

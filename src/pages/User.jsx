@@ -19,7 +19,7 @@ const User = () => {
           <p className="mt-1">{t("userSettings.description")}</p>
         </div>
 
-        <div className="shadow rounded-2xl p-6 space-y-6 transition">
+        <div className="shadow shadow-bg-alt rounded-2xl p-6 space-y-6 transition">
           <div className="flex justify-between items-center">
             <div>
               <h2 className="text-lg font-semibold">

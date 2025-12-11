@@ -3,6 +3,7 @@ import VehicleCard from "./VehicleCard";
 import { useTranslation } from "react-i18next";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useMemo, useState } from "react";
+import Loader from "../Loader";
 
 
 export default function StepVehichleSelector({
@@ -23,6 +24,7 @@ export default function StepVehichleSelector({
     return v.vehicleTypeEn
   }))];
 
+  console.log(vehicles);
 
   const filteredVehicles = useMemo(() => {
     let currentVehicles = vehicles;
@@ -42,13 +44,7 @@ export default function StepVehichleSelector({
     );
   }
   if (isLoading) {
-    return (
-      <div className="flex justify-center align-middle">
-        <h2 className=" font-bold text-3xl text-center text-text-default">
-          {t("stepVehicleSelector.error2")}
-        </h2>
-      </div>
-    );
+    return <Loader/>
   }
 
   return (
