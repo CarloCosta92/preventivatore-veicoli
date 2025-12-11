@@ -36,6 +36,8 @@
 
   --primary: #e0a34b;
   --primary-hover: #c48732;
+
+  --primary-rgb: 224, 163, 75;
 }
 
 /* DARK MODE */
@@ -48,6 +50,8 @@
 
   --primary: #f1b761;
   --primary-hover: #d39b4b;
+
+  --primary-rgb: 241, 183, 97;
 }
 
 /* LIGHT MODE */
@@ -165,22 +169,20 @@ header,footer,main{
 }
 
 .form-container {
-  @apply 
-    w-[90vw] 
-    h-full
-    md:h-[80vh] 
-    border-2
-    border-primary 
-    rounded-3xl 
-    my-4
-    mx-auto 
-    p-6
-    shadow-xl 
-    shadow-primary/20
-    transition-shadow
-    hover:shadow-2xl
-    relative
-    z-10
+  @apply w-[90vw] h-full md:h-[80vh] border-2 border-primary rounded-3xl my-4 mx-auto p-6 transition-shadow relative z-10;
+
+  /* ✨ Neon Gold Glow */
+  box-shadow:
+    0 0 10px rgba(var(--primary-rgb), 0.6),
+    0 0 25px rgba(var(--primary-rgb), 0.4),
+    0 0 45px rgba(var(--primary-rgb), 0.25);
+}
+
+.form-container:hover {
+  box-shadow:
+    0 0 15px rgba(var(--primary-rgb), 0.9),
+    0 0 35px rgba(var(--primary-rgb), 0.6),
+    0 0 65px rgba(var(--primary-rgb), 0.35);
 }
 
 .card-absolute-title {
