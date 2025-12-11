@@ -1,6 +1,5 @@
 # Preventivatore Veicoli
 
-## Obiettivi
 
 - Analisi di un brief e progettazione di una Web App
 - Gestire la comunicazione tra frontend e backend tramite API REST
