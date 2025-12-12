@@ -12,7 +12,7 @@ export default function StepUser({
   setIsModalVisible,
 }) {
   const { t } = useTranslation();
-  const { currentVehicle, setCurrentVehicle } = useGlobalContext();
+  const { currentVehicle} = useGlobalContext();
   const [errors, setErrors] = useState({});
 
   const currentStepKey = `step${currentStep}`;
@@ -57,6 +57,9 @@ export default function StepUser({
     }
 
     const formDataFormatted = {
+      "userName": userData.name,
+      "userSurname": userData.surname,
+      "userMail": userData.email,
       vehicleDTOToQuoted: [
         {
           id: currentVehicle.id,

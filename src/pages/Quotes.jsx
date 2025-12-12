@@ -80,7 +80,7 @@ export default function Quotes() {
   return (
     <>
       <div className="text-center p-5">
-        <h1 className="font-bold text-3xl text-text-default w-full mb-5">
+        <h1 className="font-bold text-5xl text-text-default w-full mb-5">
           I Tuoi Preventivi
         </h1>
         <div className="mx-5">
@@ -102,22 +102,22 @@ export default function Quotes() {
         <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="flex justify-between">
-              <label className="text-sm font-medium mb-2" htmlFor="email">
+              <label className="font-medium mb-2" htmlFor="email">
                 Inserisci la tua mail
               </label>
               {/* Aggiunto type="button" per evitare che invii il form */}
               <button
                 type="button"
-                className="text-red-800 hover:cursor-pointer hover:text-red-400 hover:scale-110"
+                className="text-red-700 hover:cursor-pointer hover:text-red-400 hover:scale-110"
                 onClick={() => setIsClicked((prev) => !prev)}
               >
-                <CircleX />
+                <CircleX/>
               </button>
             </div>
             <div className="text-center p-3">
               <input
                 // CORRETTO QUI: Rimossa la doppia dicitura className="className={...}"
-                className="w-full px-4 py-3 border rounded-lg focus:ring-primary focus:border-primary transition duration-150"
+                className="w-full my-3 p-4 py-3 border rounded-lg focus:ring-primary focus:border-primary transition duration-150"
                 name="email"
                 id="email"
                 type="email"
