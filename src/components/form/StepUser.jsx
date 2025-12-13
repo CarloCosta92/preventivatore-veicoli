@@ -60,6 +60,7 @@ export default function StepUser({
       "userName": userData.name,
       "userSurname": userData.surname,
       "userMail": userData.email,
+      "userEmail": userData.email,
       vehicleDTOToQuoted: [
         {
           id: currentVehicle.id,

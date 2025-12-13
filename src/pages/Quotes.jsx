@@ -2,6 +2,7 @@ import { CircleX } from "lucide-react";
 import { useState } from "react";
 import Loader from "../components/Loader"; // Importiamo il tuo Loader
 import { useTranslation } from "react-i18next";
+import { img } from "framer-motion/client";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -17,15 +18,15 @@ export default function Quotes() {
   });
 
   const [quotations, setQuotations] = useState([]);
-  const quotesUrl = `${baseUrl}quotes`;
+  const searchUrl = `${baseUrl}quotation/search?mail=`;
   const [emailInput, setEmailInput] = useState("");
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const getQuotations = async () => {
+  const getQuotations = async (email) => {
     setIsLoading(true);
     setError((prev) => ({ ...prev, fetch: null })); // Resetta errori precedenti
     try {
-      const response = await fetch(quotesUrl);
+      const response = await fetch(`${searchUrl}${email}`);
       if (!response.ok) {
         throw new Error(`Errore nella chiamata con Status ${response.status}`);
       }
@@ -67,9 +68,30 @@ export default function Quotes() {
     if (!validate()) {
       return;
     }
-    getQuotations();
+    getQuotations(emailInput);
   };
 
+  const openPdf = async (id) => {
+    try {
+      const response = await fetch(`${baseUrl}quotation/${id}/pdf`);
+      if(!response.ok){
+        throw new Error(`Errore nel caricamento del Preventivo con status ${response.status}`);
+      }
+      console.log(response)
+      const blob = await response.blob();
+      console.log(blob)
+      const url = window.URL.createObjectURL(blob);
+      console.log(url);
+      window.open(url, '_blank');
+      // Pulisci memoria
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error);
+      alert("Errore nel caricamento del Preventivo del PDF")
+    }
+  }
+
+    console.log(quotations);
   // RIMOSSO: if(isLoading) return <Loader/>
   // Perché faceva sparire il modale. Ora gestiamo il loading nel bottone.
 
@@ -85,9 +107,39 @@ export default function Quotes() {
         </h1>
         <div className="mx-5">
           {quotations.length > 0 ? (
-            <div>lista dei tuoi preventivi</div>
+  <div className="flex flex-wrap justify-center gap-6 p-4">
+    {quotations.map((q) => (
+      <div 
+        key={q.id} 
+        className="flex flex-col items-center justify-between w-64 bg-alt border border-gray-200 rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
+      >
+        {/* Intestazione Card: Dati Veicolo */}
+        <div className="text-center mb-4">
+          <h5 className="text-xl font-bold text-gray-800">
+            {q.vehicleDTOToQuoted?.[0]?.brand || "Brand sconosciuto"}
+          </h5>
+          <h6 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+            {q.vehicleDTOToQuoted?.[0]?.model || "Modello sconosciuto"}
+          </h6>
+          </div>
+            <button 
+              className="flex items-center gap-2 px-4 py-2 text-sm hover:cursor-pointer font-semibold text-red-600 bg-red-50 rounded-full hover:bg-red-600 hover:text-white transition-all duration-300 group"
+              onClick={() => openPdf(q.id)} // Sostituisci con la tua funzione download
+              >
+                <img 
+                  src="/pdf.svg" 
+                  alt="PDF" 
+                  className="w-6 h-6 transition-transform group-hover:scale-110" 
+                />
+                <span>Apri</span>
+            </button>
+          </div>
+              ))}
+            </div>
           ) : (
-            <h3 className="text-2xl font-bold">Ancora nessun Preventivo</h3>
+            <div className="text-center text-gray-500 p-10">
+              Nessun preventivo trovato.
+            </div>
           )}
         </div>
         <button

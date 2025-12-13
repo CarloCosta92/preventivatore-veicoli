@@ -26,7 +26,9 @@ export default function StepOptionals({
   const [error, setError] = useState(false);
 
   const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-  const OPTIONALS_URL = useMemo(() => `${BASE_URL}optionals`, [BASE_URL]);
+  const OPTIONALS_URL = `${BASE_URL}optionals`
+
+  console.log(OPTIONALS_URL);
 
   const getOptionals = async () => {
     try {
