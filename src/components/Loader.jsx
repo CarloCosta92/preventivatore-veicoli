@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 const Loader = () => {
+  const { t } = useTranslation();
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center  backdrop-blur-sm">
       {/* 2. The Spinner */}
@@ -7,7 +10,7 @@ const Loader = () => {
         role="status"
         aria-label="Loading"
       >
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only">{t("quotes.loading")}</span>
       </div>
     </div>
   );

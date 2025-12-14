@@ -5,7 +5,7 @@ import itaFlag from "../assets/ita.svg";
 import ukFlag from "../assets/uk.svg";
 
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const currentLanguage = i18n.language;
 
   const handleLanguageChange = (langCode) => {
@@ -22,7 +22,7 @@ const LanguageSwitcher = () => {
     <div className="shadow shadow-bg-alt rounded-2xl p-6 space-y-6 transition bg-alt">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-semibold">Lingua dell'Interfaccia</h2>
+          <h2 className="text-lg font-semibold">{t("language.title")}</h2>
         </div>
         <div className="flex gap-3">
           {languages.map((lang) => (

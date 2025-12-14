@@ -1,8 +1,6 @@
 import { CircleX } from "lucide-react";
 import { useState } from "react";
-import Loader from "../components/Loader"; // Importiamo il tuo Loader
 import { useTranslation } from "react-i18next";
-import { img } from "framer-motion/client";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -51,10 +49,10 @@ export default function Quotes() {
 
     // Controllo campo vuoto
     if (!emailInput.trim()) {
-      newErrorMail = t("errors.required", "Campo obbligatorio");
+      newErrorMail = t("errors.required");
       isValid = false;
     } else if (!emailRegex.test(emailInput)) {
-      newErrorMail = t("errors.invalidEmail", "Email non valida");
+      newErrorMail = t("errors.invalidEmail");
       isValid = false;
     }
 
@@ -74,24 +72,23 @@ export default function Quotes() {
   const openPdf = async (id) => {
     try {
       const response = await fetch(`${baseUrl}quotation/${id}/pdf`);
-      if(!response.ok){
-        throw new Error(`Errore nel caricamento del Preventivo con status ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`${t("errors.loandingQuotes")} ${response.status}`);
       }
-      console.log(response)
+      console.log(response);
       const blob = await response.blob();
-      console.log(blob)
+      console.log(blob);
       const url = window.URL.createObjectURL(blob);
       console.log(url);
-      window.open(url, '_blank');
+      window.open(url, "_blank");
       // Pulisci memoria
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error(error);
-      alert("Errore nel caricamento del Preventivo del PDF")
     }
-  }
+  };
 
-    console.log(quotations);
+  console.log(quotations);
   // RIMOSSO: if(isLoading) return <Loader/>
   // Perché faceva sparire il modale. Ora gestiamo il loading nel bottone.
 
@@ -103,42 +100,43 @@ export default function Quotes() {
     <>
       <div className="text-center p-5">
         <h1 className="font-bold text-5xl text-text-default w-full mb-5">
-          I Tuoi Preventivi
+          {t("quotes.title")}
         </h1>
         <div className="mx-5">
           {quotations.length > 0 ? (
-  <div className="flex flex-wrap justify-center gap-6 p-4">
-    {quotations.map((q) => (
-      <div 
-        key={q.id} 
-        className="flex flex-col items-center justify-between w-64 bg-alt border border-gray-200 rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
-      >
-        {/* Intestazione Card: Dati Veicolo */}
-        <div className="text-center mb-4">
-          <h5 className="text-xl font-bold text-gray-800">
-            {q.vehicleDTOToQuoted?.[0]?.brand || "Brand sconosciuto"}
-          </h5>
-          <h6 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-            {q.vehicleDTOToQuoted?.[0]?.model || "Modello sconosciuto"}
-          </h6>
-          </div>
-            <button 
-              className="flex items-center gap-2 px-4 py-2 text-sm hover:cursor-pointer font-semibold text-red-600 bg-red-50 rounded-full hover:bg-red-600 hover:text-white transition-all duration-300 group"
-              onClick={() => openPdf(q.id)} // Sostituisci con la tua funzione download
-              >
-                <img 
-                  src="/pdf.svg" 
-                  alt="PDF" 
-                  className="w-6 h-6 transition-transform group-hover:scale-110" 
-                />
-                <span>Apri</span>
-            </button>
-          </div>
+            <div className="flex flex-wrap justify-center gap-6 p-4">
+              {quotations.map((q) => (
+                <div
+                  key={q.id}
+                  className="flex flex-col items-center justify-between w-64 bg-alt border border-gray-200 rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
+                >
+                  {/* Intestazione Card: Dati Veicolo */}
+                  <div className="text-center mb-4">
+                    <h5 className="text-xl font-bold text-gray-800">
+                      {q.vehicleDTOToQuoted?.[0]?.brand || "Brand sconosciuto"}
+                    </h5>
+                    <h6 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      {q.vehicleDTOToQuoted?.[0]?.model ||
+                        "Modello sconosciuto"}
+                    </h6>
+                  </div>
+                  <button
+                    className="flex items-center gap-2 px-4 py-2 text-sm hover:cursor-pointer font-semibold text-red-600 bg-red-50 rounded-full hover:bg-red-600 hover:text-white transition-all duration-300 group"
+                    onClick={() => openPdf(q.id)} // Sostituisci con la tua funzione download
+                  >
+                    <img
+                      src="/pdf.svg"
+                      alt="PDF"
+                      className="w-6 h-6 transition-transform group-hover:scale-110"
+                    />
+                    <span> {t("quotes.open")}</span>
+                  </button>
+                </div>
               ))}
             </div>
           ) : (
             <div className="text-center text-gray-500 p-10">
-              Nessun preventivo trovato.
+              {t("quotes.none")}
             </div>
           )}
         </div>
@@ -146,7 +144,7 @@ export default function Quotes() {
           className="default-btn m-3"
           onClick={() => setIsClicked((prev) => !prev)}
         >
-          Visualizza i tuoi Preventivi
+          {t("quotes.loadQuotes")}
         </button>
       </div>
 
@@ -155,7 +153,7 @@ export default function Quotes() {
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="flex justify-between">
               <label className="font-medium mb-2" htmlFor="email">
-                Inserisci la tua mail
+                {t("quotes.email")}
               </label>
               {/* Aggiunto type="button" per evitare che invii il form */}
               <button
@@ -163,7 +161,7 @@ export default function Quotes() {
                 className="text-red-700 hover:cursor-pointer hover:text-red-400 hover:scale-110"
                 onClick={() => setIsClicked((prev) => !prev)}
               >
-                <CircleX/>
+                <CircleX />
               </button>
             </div>
             <div className="text-center p-3">
@@ -189,7 +187,7 @@ export default function Quotes() {
                 type="submit"
                 disabled={isLoading} // Evita doppi click
               >
-                {isLoading ? "Caricamento..." : "Carica"}
+                {isLoading ? t("quotes.loading") : t("quotes.load")}
               </button>
             </div>
           </form>

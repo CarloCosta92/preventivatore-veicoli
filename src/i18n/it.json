@@ -1,4 +1,9 @@
 {
+  "errors":{
+"required":"Campo obbligatorio",
+"invalidEmail":"Email non valida",
+"loandingQuotes":"Errore nel caricamento del Preventivo con status"
+  },
   "header": {
     "title": "Preventivatore veicoli"
   },
@@ -49,7 +54,8 @@
       "description":"Alimentazione"
     },
     "stepOptional":{
-      "title":"Scegli gli optional"
+      "title":"Scegli gli optional",
+      "none":"Nessun Optional Trovato"
     },
     "stepYear":{
       "title":"Scegli l'anno di immatricolazione"
@@ -70,7 +76,24 @@
     "themeDescription":"Scegli come visualizzare la dashboard.",
     "dark":"Scuro",
     "light":"chiaro"
-
-  }
+  },
+  "quotes":{
+    "title": "I Tuoi Preventivi",
+    "open":"Apri",
+    "none":" Nessun preventivo trovato.",
+  "loadQuotes":"Visualizza i tuoi Preventivi",
+  "email":"Inserisci la tua mail",
+  "loading":"Caricamento...",
+  "load": "Carica"
+  },
+  "multiStepForm":{
+  "success":"Creazione preventivo avvenuta con successo",
+  "load":"Visualizza i tuoi preventivi",
+  "create":"Genera un altro preventivo",
+  "failed":"Creazione preventivo fallita"
+},
+"language":{
+  "title":"Lingua dell'Interfaccia"
+}
 
 }

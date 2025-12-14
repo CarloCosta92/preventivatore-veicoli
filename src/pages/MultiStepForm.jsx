@@ -9,8 +9,10 @@ import { useGlobalContext } from "../context/GlobalContext";
 import CenterModal from "../components/modal/CenterModal";
 import { NavLink } from "react-router-dom";
 import { R_HOME, R_QUOTES, R_USER } from "../data/Path";
+import { useTranslation } from "react-i18next";
 
 export default function MultiStepForm() {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({});
   const [isResponseOk, setIsResponseOk] = useState(false);
@@ -80,34 +82,34 @@ export default function MultiStepForm() {
           {isResponseOk ? (
             <div className="text-center">
               <h3 className="text-2xl font-bold text-default mb-6">
-                Creazione preventivo avvenuta con successo
+                {t("multiStepForm.success")}
               </h3>
               <div className="flex flex-col md:flex-row justify-center gap-4">
                 <NavLink
                   to={R_QUOTES}
                   className="bg-primary hover:bg-primary-hover  font-semibold px-6 py-2 rounded-lg transition"
                 >
-                  Visualizza i tuoi preventivi
+                  {t("multiStepForm.load")}
                 </NavLink>
                 <NavLink
                   to={R_HOME}
                   className="bg-gray-400 hover:bg-gray-500  font-semibold px-6 py-2 rounded-lg transition"
                 >
-                  Genera un altro preventivo
+                  {t("multiStepForm.create")}
                 </NavLink>
               </div>
             </div>
           ) : (
             <div className="text-center">
               <h3 className="text-2xl font-bold text-default mb-6">
-                Creazione preventivo fallita
+                {t("multiStepForm.failed")}
               </h3>
               <div className="flex flex-col md:flex-row justify-center gap-4">
                 <NavLink
                   to={R_HOME}
                   className="bg-primary hover:bg-gray-500  font-semibold px-6 py-2 rounded-lg transition"
                 >
-                  Genera un altro preventivo
+                  {t("multiStepForm.create")}
                 </NavLink>
               </div>
             </div>

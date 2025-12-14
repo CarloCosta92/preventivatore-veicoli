@@ -26,7 +26,7 @@ export default function StepOptionals({
   const [error, setError] = useState(false);
 
   const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-  const OPTIONALS_URL = `${BASE_URL}optionals`
+  const OPTIONALS_URL = `${BASE_URL}optionals`;
 
   console.log(OPTIONALS_URL);
 
@@ -64,8 +64,8 @@ export default function StepOptionals({
   useEffect(() => {
     setCurrentVehicle((prevVehicle) => ({
       ...prevVehicle,
-      optionals: selectedOptionals
-      }));
+      optionals: selectedOptionals,
+    }));
   }, [selectedOptionals, setCurrentVehicle, currentStepKey]);
 
   const toggleOptional = (optional) => {
@@ -85,11 +85,11 @@ export default function StepOptionals({
   console.log("Veicolo Corrente", currentVehicle);
 
   if (isLoading) {
-    return <Loader/>
+    return <Loader />;
   }
 
   if (error) {
-    return <div>Nessun Optional Trovato</div>;
+    return <div>{t("stepOptional.none")}</div>;
   }
 
   return (

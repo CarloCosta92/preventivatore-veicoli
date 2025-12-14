@@ -2,6 +2,11 @@
   "header": {
     "title": "Vehicle Quotation Tool"
   },
+  "errors": {
+  "required": "Required field",
+  "invalidEmail": "Invalid email",
+  "loandingQuotes": "Error loading the quote with status"
+},
 
   "footer": {
     "title": "Boolean — Quotes",
@@ -46,7 +51,8 @@
   "description": "Fuel type"
 },
     "stepOptional":{
-      "title":"Choose optionals"
+      "title":"Choose optionals",
+      "none": "No options found"
     },
      "stepYear":{
       "title":"Choose year"
@@ -67,7 +73,27 @@
   "themeDescription": "Choose how to display the dashboard.",
   "dark": "Dark",
   "light": "Light"
+},
+"quotes": {
+  "title": "Your Quotes",
+  "open": "Open",
+  "none": "No quotes found.",
+  "loadQuotes": "View your quotes",
+  "email": "Enter your email",
+  "loading": "Loading...",
+  "load": "Load"
+},
+"multiStepForm": {
+  "success": "Quote created successfully",
+  "load": "View your quotes",
+  "create": "Generate another quote",
+  "failed": "Quote creation failed"
+},
+"language": {
+  "title": "Interface language"
 }
+
+
 
   
 }
